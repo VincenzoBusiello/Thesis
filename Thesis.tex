@@ -1,0 +1,111 @@
+\documentclass[12pt]{article}
+
+
+\usepackage{graphicx} % Il pacchetto permette di caricare delle immagini
+\usepackage{hyperref} % Permette di inserire collegamenti all'interno del testo
+\usepackage{natbib} % permette di gestire la bibliografia
+
+
+\title{Titolo Tesi}
+\author{Vincenzo Busiello}
+%\date{} % permette di cambiare l'impostazione della data a seconda degli argomenti che vengono passati. Se non è presente, pesca direttamente la data dal sistema impostandola come mm/gg/aa. 
+
+\begin{document}
+
+\maketitle
+
+\newpage
+\tableofcontents
+
+\newpage
+\section{Abstract}
+Il telerilevamento geo-ecologico è indubbiamente uno strumento utile per poter valutare lo stato degli ecosistemi permettendo in questo modo di poter prendere in considerazione le migliori strategie di conservazione e di gestione di aree protette e/o di interesse conservazionistico. Ciò diviene possibile utilizzando immagini acquisite tramite satelliti, come quelli dedicati al programma europeo Copernicus (S-2A, S-2B e S-2C), con una configurazione tale da permettere il campionamento di 13 bande spettrali con differenti risoluzioni spaziali. Inoltre, è risaputa la delicatezza e l'importanza di ecosistemi come quelli costieri, zone umide e forestali sia in termini economici che di importanza intrinseca per la vita stessa, nostra e del pianeta. Le aree di studio sono principalmente tre siti dispositi ai vertici di un triangolo comprendente Italia, Spagna e Francia. Il primo è situato 
+
+\newpage
+\section{Introduzione} 
+\label{sec:intro} % nel caso in cui si sbagli il nome della sezione compariranno dei ?? nella porzione in cui richiamo la \ref{}. Ciò permette di poter cercare eventuali errori all'interno del testo in modo più semplice. 
+%\textbf{E ho tutto dentro e poi mi accorgo che non ho parole} % \textb mette in grassetto la parte di testo (che ho preso a caso da internet) passata come argomento
+%\textit{Non c'è poesia solo malinconia e malumore} % \textit formatta il testo passato come argomento in corsivo
+
+
+\newpage
+\section{Metodi}
+\subsection{Area di Studio}
+\subsection{Algoritmi}
+The equation used was Equation\ref{eq:sum}: 
+\begin{equation} 
+    T = \sum p_i % \sum inserisce il simbolo della sommatoria
+    \label{eq:sum}
+\end{equation}
+
+In this thesis we made use of Equation \ref{eq:newton}:
+
+\begin{equation}
+    F=\sqrt[n]{G \frac{m_1 \times m_2}{d^2}} % \sqrt = radice quadrata. tra le [] si può inserire l'esponente della radice. l'underscore serve per inserire il pedice. \times inserisce l'operatore moltiplicazione. 
+    \label{eq:newton}
+\end{equation}
+
+\newpage
+\section{Risultati}
+In this thesis the algorithm led to the results shown in figure \ref{fig:pulcinella}
+
+\newpage
+\section{Discussione}
+In this theses we demostrated that:
+    
+\ref{sec:intro}.
+
+\newpage
+\section{Bibliografia}
+\begin{thebibliography}{100}
+    
+    \bibitem{Weller2024} 
+    Hannah I. Weller, Anna E. Hiller, Nathan P. Lord, Steven M. Van Belleghem (2024). recolorize: An R package for flexible colour segmentation of biological images. Ecology Letters. 27. 10.1111/ele.14378. 
+
+    \bibitem{Costanza1997}
+    Costanza, R., d'Arge, R., de Groot, R. et al. The value of the world's ecosystem services and natural capital. Nature 387, 253–260 (1997). https://doi.org/10.1038/387253a0
+
+    \bibitem{Barbier2011}
+    Barbier, E.B., Hacker, S.D., Kennedy, C., Koch, E.W., Stier, A.C. and Silliman, B.R. (2011), The value of estuarine and coastal ecosystem services. Ecological Monographs, 81: 169-193. https://doi.org/10.1890/10-1510.1
+    
+    \bibitem{Ramirez2025}
+    Ramírez-Juidias, E.; Romero-Beltrán, P.; González-López, C.-I. (2025) Satellite-Derived Spectral Index Analysis for Drought and Groundwater Monitoring in Doñana Wetlands: A Tool for Informed Conservation Strategies. Geographies 2025, 5, 75. https://doi.org/10.3390/geographies5040075
+
+    \bibitem{Franquesa2025}
+    Franquesa, M., Adell-Michavila, M. Vicente-Serrano, S.M. (2025) Long-term vegetation dynamics in Spain’s National Park Network: insights from remote sensing data. Environ Monit Assess 197, 767 (2025). https://doi.org/10.1007/s10661-025-14233-w
+
+    \bibitem{Fernández2010}
+    Néstor Fernández, José M. Paruelo, Miguel Delibes, Ecosystem functioning of protected and altered Mediterranean environments: A remote sensing classification in Doñana, Spain, Remote Sensing of Environment, Volume 114, Issue 1, 2010, Pages 211-220, ISSN 0034-4257, https://doi.org/10.1016/j.rse.2009.09.001.
+
+    \bibitem{Li2015}
+    Li, L., Vrieling, A., Skidmore, A. et al. Evaluation of MODIS Spectral Indices for Monitoring Hydrological Dynamics of a Small, Seasonally-Flooded Wetland in Southern Spain. Wetlands 35, 851–864 (2015). https://doi.org/10.1007/s13157-015-0676-9
+
+    \bibitem{Barillé2010}
+    Laurent Barillé, Marc Robin, Nicolas Harin, Annaëlle Bargain, Patrick Launeau, Increase in seagrass distribution at Bourgneuf Bay (France) detected by spatial remote sensing, Aquatic Botany, Volume 92, Issue 3, 2010, Pages 185-194, ISSN 0304-3770, https://doi.org/10.1016/j.aquabot.2009.11.006
+
+    \bibitem{Zoffoli2020}
+    Maria Laura Zoffoli, Pierre Gernez, Philippe Rosa, Anthony Le Bris, Vittorio E. Brando, Anne-Laure Barillé, Nicolas Harin, Steef Peters, Kathrin Poser, Lazaros Spaias, Gloria Peralta, Laurent Barillé, Sentinel-2 remote sensing of Zostera noltei-dominated intertidal seagrass meadows, Remote Sensing of Environment, Volume 251, 2020, 112020, ISSN 0034-4257, https://doi.org/10.1016/j.rse.2020.112020
+
+    \bibitem{Spadoni2020}
+    Gian Luca Spadoni, Alice Cavalli, Luca Congedo, Michele Munafò, Analysis of Normalized Difference Vegetation Index (NDVI) multi-temporal series for the production of forest cartography, Remote Sensing Applications: Society and Environment, Volume 20, 2020, 100419, ISSN 2352-9385, https://doi.org/10.1016/j.rsase.2020.100419
+
+    \bibitem{Bonannella2022}
+    Bonannella, C.; Chirici, G.; Travaglini, D.; Pecchi, M.; Vangi, E.; D’Amico, G.; Giannetti, F. Characterization of Wildfires and Harvesting Forest Disturbances and Recovery Using Landsat Time Series: A Case Study in Mediterranean Forests in Central Italy. Fire 2022, 5, 68. https://doi.org/10.3390/fire5030068
+
+    \bibitem{Arrogante-Funes2025}
+    Patricia Arrogante-Funes, Fátima Arrogante-Funes, Dina Osuna Feijoo, Ariadna Álvarez-Ripado, Carlos J. Novillo, Adrián G. Bruzón, Exploring spatiotemporal dynamics and drivers of forest ecosystems in southern Europe with explainable machine learning, Ecological Informatics, Volume 90, 2025, 103343, ISSN 1574-9541, https://doi.org/10.1016/j.ecoinf.2025.103343
+
+    \bibitem{Groeneveld2024}
+    Groeneveld J, Odemer R, Requier F (2024) Brood indicators are an early warning signal of honey bee colony loss—a simulation-based study. PLoS ONE 19(5): e0302907. https://doi.org/10.1371/journal.pone.0302907
+\end{thebibliography}
+
+\newpage
+\begin{figure}
+    
+    \centering % serve a centrare la figura in mezzo alla pagina
+    \includegraphics[width=0.5\textwidth]{} % con il parametro \textwidth si adatta l'immagine alla grandezza del testo; moltiplicandola per 0.5 si ottiene l'immagine pari alla metà. 
+    \caption{Enter Caption}
+    \label{fig:pulcinella}
+    
+\end{figure}
+\end{document}
