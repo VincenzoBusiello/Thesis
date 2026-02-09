@@ -626,46 +626,47 @@ plot(ndviFCag_21, col=mako(10))
 #              1st half 2022                #
 #___________________________________________#
 
-FCm1_20 <- rast("FCm4_20.tiff")
-FCm2_20 <- rast("FCm3_20.tiff")
-FCm3_20 <- rast("FCm2_20.tiff")
-FCm4_20 <- rast("FCm8_20.tiff")
-FCm_20 <- c(FCm1_20, FCm2_20, FCm3_20, FCm4_20)
+FCm1_22 <- rast("FCm4_22.tiff")
+FCm2_22 <- rast("FCm3_22.tiff")
+FCm3_22 <- rast("FCm2_22.tiff")
+FCm4_22 <- rast("FCm8_22.tiff")
+FCm_22 <- c(FCm1_22, FCm2_22, FCm3_22, FCm4_22)
 
-im.plotRGB(FCm_20, 1,2,3)
-im.plotRGB(FCm_20, 4,2,3)
+im.plotRGB(FCm_22, 1,2,3)
+im.plotRGB(FCm_22, 4,2,3)
 
 
 ## calculating NDVI
-difFCm_20 = FCm_20[[4]] - FCm_20[[1]] # NIR - RED
-sumFCm_20 = FCm_20[[4]] + FCm_20[[1]] # NIR + RED
-ndviFCm_20 = difFCm_20 / sumFCm_20
+difFCm_22 = FCm_22[[4]] - FCm_22[[1]] # NIR - RED
+sumFCm_22 = FCm_22[[4]] + FCm_22[[1]] # NIR + RED
+ndviFCm_22 = difFCm_22 / sumFCm_22
 
 
-plot(ndviFCm_20, col=mako(10))
+plot(ndviFCm_22, col=mako(10))
 
 
 #___________________________________________#
 #              2nd half 2022                #
 #___________________________________________#
 
-DOp1_22 <- rast("DOp4_22.tiff")
-DOp2_22 <- rast("DOp3_22.tiff")
-DOp3_22 <- rast("DOp2_22.tiff")
-DOp4_22 <- rast("DOp8_22.tiff")
-DOp_22 <- c(DOp1_22, DOp2_22, DOp3_22, DOp4_22)
+FCag1_22 <- rast("FCag4_22.tiff")
+FCag2_22 <- rast("FCag3_22.tiff")
+FCag3_22 <- rast("FCag2_22.tiff")
+FCag4_22 <- rast("FCag8_22.tiff")
+FCag_22 <- c(FCag1_22, FCag2_22, FCag3_22, FCag4_22)
 
-im.plotRGB(DOp_22, 1,2,3)
-im.plotRGB(DOp_22, 4,2,3)
+im.plotRGB(FCag_22, 1,2,3)
+im.plotRGB(FCag_22, 4,2,3)
 
 
 ## calculating NDVI
-difDOp_22 = DOp_22[[4]] - DOp_22[[1]] # NIR - RED
-sumDOp_22 = DOp_22[[4]] + DOp_22[[1]] # NIR + RED
-ndviDOp_22 = difDOp_22 / sumDOp_22
+difFCag_22 = FCag_22[[4]] - FCag_22[[1]] # NIR - RED
+sumFCag_22 = FCag_22[[4]] + FCag_22[[1]] # NIR + RED
+ndviFCag_22 = difFCag_22 / sumFCag_22
 
 
-plot(ndviDOp_22, col=mako(10))
+plot(ndviFCag_22, col=mako(10))
+
 
 
 
@@ -673,45 +674,45 @@ plot(ndviDOp_22, col=mako(10))
 #              1st half 2023                #
 #___________________________________________#
 
-DOa1_23 <- rast("DOa4_23.tiff")
-DOa2_23 <- rast("DOa3_23.tiff")
-DOa3_23 <- rast("DOa2_23.tiff")
-DOa4_23 <- rast("DOa8_23.tiff")
-DOa_23 <- c(DOa1_23, DOa2_23, DOa3_23, DOa4_23)
+FCg1_23 <- rast("FCg4_23.tiff")
+FCg2_23 <- rast("FCg3_23.tiff")
+FCg3_23 <- rast("FCg2_23.tiff")
+FCg4_23 <- rast("FCg8_23.tiff")
+FCg_23 <- c(FCg1_23, FCg2_23, FCg3_23, FCg4_23)
 
-im.plotRGB(DOa_23, 1,2,3)
-im.plotRGB(DOa_23, 4,2,3)
+im.plotRGB(FCg_23, 1,2,3)
+im.plotRGB(FCg_23, 4,2,3)
 
 
 ## calculating NDVI
-difDOa_23 = DOa_23[[4]] - DOa_23[[1]] # NIR - RED
-sumDOa_23 = DOa_23[[4]] + DOa_23[[1]] # NIR + RED
-ndviDOa_23 = difDOa_23 / sumDOa_23
+difFCg_23 = FCg_23[[4]] - FCg_23[[1]] # NIR - RED
+sumFCg_23 = FCg_23[[4]] + FCg_23[[1]] # NIR + RED
+ndviFCg_23 = difFCg_23 / sumFCg_23
 
 
-plot(ndviDOa_23, col=mako(10))
+plot(ndviFCg_23, col=mako(10))
 
 #___________________________________________#
 #              2nd half 2023                #
 #___________________________________________#
 
-DOp1_23 <- rast("DOp4_23.tiff")
-DOp2_23 <- rast("DOp3_23.tiff")
-DOp3_23 <- rast("DOp2_23.tiff")
-DOp4_23 <- rast("DOp8_23.tiff")
-DOp_23 <- c(DOp1_23, DOp2_23, DOp3_23, DOp4_23)
+FCn1_23 <- rast("FCn4_23.tiff")
+FCn2_23 <- rast("FCn3_23.tiff")
+FCn3_23 <- rast("FCn2_23.tiff")
+FCn4_23 <- rast("FCn8_23.tiff")
+FCn_23 <- c(FCn1_23, FCn2_23, FCn3_23, FCn4_23)
 
-im.plotRGB(DOp_23, 1,2,3)
-im.plotRGB(DOp_23, 4,2,3)
+im.plotRGB(FCn_23, 1,2,3)
+im.plotRGB(FCn_23, 4,2,3)
 
 
 ## calculating NDVI
-difDOp_23 = DOp_23[[4]] - DOp_23[[1]] # NIR - RED
-sumDOp_23 = DOp_23[[4]] + DOp_23[[1]] # NIR + RED
-ndviDOp_23 = difDOp_23 / sumDOp_23
+difFCn_23 = FCn_23[[4]] - FCn_23[[1]] # NIR - RED
+sumFCn_23 = FCn_23[[4]] + FCn_23[[1]] # NIR + RED
+ndviFCn_23 = difFCn_23 / sumFCn_23
 
 
-plot(ndviDOp_23, col=mako(10))
+plot(ndviFCn_23, col=mako(10))
 
 
 
@@ -719,42 +720,43 @@ plot(ndviDOp_23, col=mako(10))
 #              1st half 2024                #
 #___________________________________________#
 
-DOa1_24 <- rast("DOa4_24.tiff")
-DOa2_24 <- rast("DOa3_24.tiff")
-DOa3_24 <- rast("DOa2_24.tiff")
-DOa4_24 <- rast("DOa8_24.tiff")
-DOa_24 <- c(DOa1_24, DOa2_24, DOa3_24, DOa4_24)
+FCa1_24 <- rast("FCa4_24.tiff")
+FCa2_24 <- rast("FCa3_24.tiff")
+FCa3_24 <- rast("FCa2_24.tiff")
+FCa4_24 <- rast("FCa8_24.tiff")
+FCa_24 <- c(FCa1_24, FCa2_24, FCa3_24, FCa4_24)
 
-im.plotRGB(DOa_24, 1,2,3)
-im.plotRGB(DOa_24, 4,2,3)
-
-
-## calculating NDVI
-difDOa_24 = DOa_24[[4]] - DOa_24[[1]] # NIR - RED
-sumDOa_24 = DOa_24[[4]] + DOa_24[[1]] # NIR + RED
-ndviDOa_24 = difDOa_24 / sumDOa_24
-
-
-plot(ndviDOa_24, col=mako(10))
-
-#___________________________________________#
-#              2nd half 2023                #
-#___________________________________________#
-
-DOp1_24 <- rast("DOp4_24.tiff")
-DOp2_24 <- rast("DOp3_24.tiff")
-DOp3_24 <- rast("DOp2_24.tiff")
-DOp4_24 <- rast("DOp8_24.tiff")
-DOp_24 <- c(DOp1_24, DOp2_24, DOp3_24, DOp4_24)
-
-im.plotRGB(DOp_24, 1,2,3)
-im.plotRGB(DOp_24, 4,2,3)
+im.plotRGB(FCa_24, 1,2,3)
+im.plotRGB(FCa_24, 4,2,3)
 
 
 ## calculating NDVI
-difDOp_24 = DOp_24[[4]] - DOp_24[[1]] # NIR - RED
-sumDOp_24 = DOp_24[[4]] + DOp_24[[1]] # NIR + RED
-ndviDOp_24 = difDOp_24 / sumDOp_24
+difFCa_24 = FCa_24[[4]] - FCa_24[[1]] # NIR - RED
+sumFCa_24 = FCa_24[[4]] + FCa_24[[1]] # NIR + RED
+ndviFCa_24 = difFCa_24 / sumFCa_24
 
 
-plot(ndviDOp_24, col=mako(10))
+plot(ndviFCa_24, col=mako(10))
+
+
+#___________________________________________#
+#              2nd half 2024                #
+#___________________________________________#
+
+FCl1_24 <- rast("FCl4_24.tiff")
+FCl2_24 <- rast("FCl3_24.tiff")
+FCl3_24 <- rast("FCl2_24.tiff")
+FCl4_24 <- rast("FCl8_24.tiff")
+FCl_24 <- c(FCl1_24, FCl2_24, FCl3_24, FCl4_24)
+
+im.plotRGB(FCl_24, 1,2,3)
+im.plotRGB(FCl_24, 4,2,3)
+
+
+## calculating NDVI
+difFCl_24 = FCl_24[[4]] - FCl_24[[1]] # NIR - RED
+sumFCl_24 = FCl_24[[4]] + FCl_24[[1]] # NIR + RED
+ndviFCl_24 = difFCl_24 / sumFCl_24
+
+
+plot(ndviFCl_24, col=mako(10))
