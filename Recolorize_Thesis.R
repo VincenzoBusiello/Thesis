@@ -1,5 +1,7 @@
 library(terra) # used for spatial data life raster or vector data
 library(imageRy) # handling raster images
+library(scales)
+library(tidyr)
 library(ggplot2)# for graphs
 library(viridis) # alternative color palettes 
 library(patchwork) # for multiple grapsh on a single plot
@@ -541,6 +543,12 @@ FCm4_20 <- rast("FCm8_20.tiff")
 FCm_20 <- c(FCm1_20, FCm2_20, FCm3_20, FCm4_20)
 
 im.plotRGB(FCm_20, 1,2,3)
+
+#___________________________________________#
+#              2nd half 2020                #
+#___________________________________________#
+
+FCs1_20 <- rast("FCs4_20.tiff")
 im.plotRGB(FCm_20, 4,2,3)
 
 
@@ -758,5 +766,105 @@ difFCl_24 = FCl_24[[4]] - FCl_24[[1]] # NIR - RED
 sumFCl_24 = FCl_24[[4]] + FCl_24[[1]] # NIR + RED
 ndviFCl_24 = difFCl_24 / sumFCl_24
 
-
 plot(ndviFCl_24, col=mako(10))
+
+# code avg_****0 is for NDVI average for 2020 in spring
+# code avg_****1 is for NDVI average for 2020 in winter
+
+avg_BB200 <- global(ndviBBm_20, mean)
+avg_BB200
+avg_BB201 <- global(ndviBBi_20, mean)
+avg_BB201
+avg_BB210 <- global(ndviBBg_21, mean)
+avg_BB210
+avg_BB211 <- global(ndviBBs_21, mean)
+avg_BB211
+avg_BB220 <- global(ndviBBma_22, mean)
+avg_BB220
+avg_BB221 <- global(ndviBBn_22, mean)
+avg_BB221
+avg_BB230 <- global(ndviBBmg_23, mean)
+avg_BB230
+avg_BB231 <- global(ndviBBst_23, mean)
+avg_BB231
+avg_BB240 <- global(ndviBBgn_24, mean)
+avg_BB240
+avg_BB241 <- global(ndviBBse_24, mean)
+avg_BB241
+
+
+site1 <- c("Bourgneuf_Bay")
+BB_NDVI_mean <- c(0.01274161, -0.1811906, -0.1023823, -0.07179545, -0.05463326, -0.1037951, 0.147327, -0.10674, -0.221131, 0.04985083)
+year <- c("2020a","2020b","2021a","2021b","2022a","2022b","2023a","2023b","2024a","2024b")
+BB_allndvimean <- mean(BB_NDVI_mean)
+
+dfNDVI_BB <- data.frame(site1, BB_NDVI_mean, year)
+
+BBplot <- ggplot(dfNDVI_BB, aes(year, BB_NDVI_mean)) +
+  geom_point() +  ggtitle("Landsat Derived NDVI - 2020-2024", subtitle = site1) +
+  xlab("Years") + ylab("Mean NDVI") +  ylim(-1,1)  +
+  geom_line() +   geom_hline(yintercept = BB_allndvimean, color="blue")
+
+avg_ndviDOa_20 <- global(ndviDOa_20, mean, na.rm = TRUE)
+avg_ndviDOa_20
+avg_ndviDOp_20 <- global(ndviDOp_20, mean, na.rm = TRUE)
+avg_ndviDOp_20
+avg_ndviDOa_21 <- global(ndviDOa_21, mean, na.rm = TRUE)
+avg_ndviDOa_21
+avg_ndviDOp_21 <- global(ndviDOp_21, mean, na.rm = TRUE)
+avg_ndviDOp_21
+avg_ndviDOa_22 <- global(ndviDOa_22, mean, na.rm = TRUE)
+avg_ndviDOa_22
+avg_ndviDOp_22 <- global(ndviDOp_22, mean, na.rm = TRUE)
+avg_ndviDOp_22
+avg_ndviDOa_23 <- global(ndviDOa_23, mean, na.rm = TRUE)
+avg_ndviDOa_23
+avg_ndviDOp_23 <- global(ndviDOp_23, mean, na.rm = TRUE)
+avg_ndviDOp_23
+avg_ndviDOa_24 <- global(ndviDOa_24, mean, na.rm = TRUE)
+avg_ndviDOa_24
+avg_ndviDOp_24 <- global(ndviDOp_24, mean, na.rm = TRUE)
+avg_ndviDOp_24
+
+site2 <- c("Donana National Park")
+DO_NDVI_mean <- c(0.2551434, 0.2829577, 0.188652, 0.278645, 0.1777016, 0.2856543, 0.1981832, 0.2172919, 0.2067973, 0.3331254)
+DO_allndvimean <- mean(DO_NDVI_mean)
+
+dfNDVI_DO <- data.frame(site2, DO_NDVI_mean, year)
+
+DOplot <- ggplot(dfNDVI_DO, aes(year, DO_NDVI_mean)) +
+  geom_point() +  ggtitle("Landsat Derived NDVI - 2020-2024", subtitle = site2) +
+  xlab("Years") + ylab("Mean NDVI") +  ylim(-1,1)  +
+  geom_line() +   geom_hline(yintercept = DO_allndvimean, color="blue")
+
+avg_ndviFCm_20 <- global(ndviFCm_20, mean, na.rm = TRUE)
+avg_ndviFCm_20
+avg_ndviFCs_20 <- global(ndviFCs_20, mean, na.rm = TRUE)
+avg_ndviFCs_20
+avg_ndviFCm_21 <- global(ndviFCm_21, mean, na.rm = TRUE)
+avg_ndviFCm_21
+avg_ndviFCag_21 <- global(ndviFCag_21, mean, na.rm = TRUE)
+avg_ndviFCag_21
+avg_ndviFCm_22 <- global(ndviFCm_22, mean, na.rm = TRUE)
+avg_ndviFCm_22 
+avg_ndviFCag_22 <- global(ndviFCag_22, mean, na.rm = TRUE)
+avg_ndviFCag_22
+avg_ndviFCg_23 <- global(ndviFCg_23, mean, na.rm = TRUE)
+avg_ndviFCg_23
+avg_ndviFCn_23 <- global(ndviFCn_23, mean, na.rm = TRUE)
+avg_ndviFCn_23
+avg_ndviFCa_24 <- global(ndviFCa_24, mean, na.rm = TRUE)
+avg_ndviFCa_24
+avg_ndviFCl_24 <- global(ndviFCl_24, mean, na.rm = TRUE)
+avg_ndviFCl_24
+
+site3 <- "Donana National Park"
+FC_NDVI_mean <- c(0.5121746, 0.7937196, 0.4858986, 0.745976, 0.4906755, 0.7447464, 0.789346, 0.6931907, 0.6415878, 0.8107496)
+FC_allndvimean <- mean(FC_NDVI_mean)
+
+dfNDVI_FC <- data.frame(site3, FC_NDVI_mean, year)
+
+FCplot <- ggplot(dfNDVI_FC, aes(year, FC_NDVI_mean)) +
+  geom_point() +  ggtitle("Landsat Derived NDVI - 2020-2024", subtitle = site3) +
+  xlab("Years") + ylab("Mean NDVI") +  ylim(-1,1)  +
+  geom_line() +   geom_hline(yintercept = FC_allndvimean, color="blue")
