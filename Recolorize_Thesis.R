@@ -868,3 +868,26 @@ FCplot <- ggplot(dfNDVI_FC, aes(year, FC_NDVI_mean)) +
   geom_point() +  ggtitle("Landsat Derived NDVI - 2020-2024", subtitle = site3) +
   xlab("Years") + ylab("Mean NDVI") +  ylim(-1,1)  +
   geom_line() +   geom_hline(yintercept = FC_allndvimean, color="blue")
+
+
+######_____________________________________________________________________######
+
+mean_ndvi <- c(0.01274161, 0.2551434, 0.5121746, -0.1811906, 0.2829577, 0.7937196, -0.1023823, 0.188652, 0.4858986, -0.07179545, 0.278645, 0.745976, -0.05463326, 0.1777016, 0.4906755, -0.1037951, 0.2856543, 0.7447464, 0.147327, 0.1981832, 0.789346, -0.10674, 0.2172919, 0.6931907, -0.221131, 0.2067973, 0.6415878, 0.04985083, 0.3331254, 0.8107496)
+
+BDF_ndvi <- data.frame(
+  year = rep(2020:2024, each = 6),
+  site = rep(rep(c("Bourgneuf Bay",
+                   "Donana",
+                   "Foreste Casentinesi")), times = 5),
+  mean_ndvi = mean_ndvi
+)
+
+BDF_ndvi <- data.frame(
+  year = rep(2020:2024, each = 6),
+  site = rep(rep(c("Bourgneuf Bay",
+                   "Donana",
+                   "Foreste Casentinesi"), times = 5),
+  replica = rep(c("1st_Half", "2nd_Half"), times = 15),
+  mean_ndvi = mean_ndvi
+)
+ggplot(BDF_ndvi, aes(x = year, y = mean_ndvi, colour = site, linetype = replica, group = interaction(site, replica))) + geom_line() + geom_point() + ylab("Mean NDVI") + ggtitle("Temporal NDVI trend with duplicate acquisitions")
