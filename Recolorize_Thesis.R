@@ -1,7 +1,5 @@
 library(terra) # used for spatial data life raster or vector data
 library(imageRy) # handling raster images
-library(scales)
-library(tidyr)
 library(ggplot2)# for graphs
 library(viridis) # alternative color palettes 
 library(patchwork) # for multiple grapsh on a single plot
@@ -826,7 +824,7 @@ avg_ndviDOa_24
 avg_ndviDOp_24 <- global(ndviDOp_24, mean, na.rm = TRUE)
 avg_ndviDOp_24
 
-site2 <- c("Donana National Park")
+site2 <- c("Donana_NP")
 DO_NDVI_mean <- c(0.2551434, 0.2829577, 0.188652, 0.278645, 0.1777016, 0.2856543, 0.1981832, 0.2172919, 0.2067973, 0.3331254)
 DO_allndvimean <- mean(DO_NDVI_mean)
 
@@ -858,7 +856,7 @@ avg_ndviFCa_24
 avg_ndviFCl_24 <- global(ndviFCl_24, mean, na.rm = TRUE)
 avg_ndviFCl_24
 
-site3 <- "Donana National Park"
+site3 <- "Foreste_Casentinesi"
 FC_NDVI_mean <- c(0.5121746, 0.7937196, 0.4858986, 0.745976, 0.4906755, 0.7447464, 0.789346, 0.6931907, 0.6415878, 0.8107496)
 FC_allndvimean <- mean(FC_NDVI_mean)
 
@@ -882,12 +880,52 @@ BDF_ndvi <- data.frame(
   mean_ndvi = mean_ndvi
 )
 
-BDF_ndvi <- data.frame(
-  year = rep(2020:2024, each = 6),
-  site = rep(rep(c("Bourgneuf Bay",
-                   "Donana",
-                   "Foreste Casentinesi"), times = 5),
-  replica = rep(c("1st_Half", "2nd_Half"), times = 15),
-  mean_ndvi = mean_ndvi
-)
-ggplot(BDF_ndvi, aes(x = year, y = mean_ndvi, colour = site, linetype = replica, group = interaction(site, replica))) + geom_line() + geom_point() + ylab("Mean NDVI") + ggtitle("Temporal NDVI trend with duplicate acquisitions")
+BDF_ndvi <- data.frame( year = rep(2020:2024, each = 6), site = rep(rep(c("Bourgneuf Bay", "Donana", "Foreste Casentinesi"), times = 5), replica = rep(c("1st_Half", "2nd_Half"), times = 15), mean_ndvi = mean_ndvi)
+ggplot(BDF_ndvi, aes(x = year, y = mean_ndvi, colour = site, linetype = replica, group = interaction(site, replica))) + 
+                       geom_line() + 
+                       geom_point() + 
+                       ylab("Mean NDVI") + 
+                       ggtitle("Temporal NDVI trend with duplicate acquisitions")
+
+
+
+  ### USING RECOLORIZE ON NDVI IMAGES ###
+recolorize_hist <- recolorize(img = ndviBBm_20, method = "hist", bins = 3, plotting = FALSE)
+
+
+
+ndviBB_list <- list(ndviBBm_20, ndviBBi_20, ndviBBg_21, ndviBBs_21, ndviBBma_22, ndviBBn_22, ndviBBmg_23, ndviBBst_23, ndviBBgn_24, ndviBBse_24)
+ndviDO_list <- list(ndviDOa_20, ndviDOp_20, ndviDOa_21, ndviDOp_21, ndviDOa_22, ndviDOp_22, ndviDOa_23, ndviDOp_23, ndviDOa_24, ndviDOp_24)
+ndviFC_list <- list(ndviFCm_20, ndviFCs_20, ndviFCm_21, ndviFCag_21, ndviFCm_22, ndviFCag_22, ndviFCg_23, ndviFCn_23, ndviFCa_24, ndviFCl_24)
+
+annuals <- 0:8
+                       
+                      
+for (i in seq_along(ndviBB_list)) {
+  writeRaster(ndviBB_list[[i]],
+              paste0("ndviBB_", annuals[i], ".tif"),
+              filetype = "GTiff",
+              datatype = "FLT4S",
+              overwrite = TRUE)
+}
+
+
+for (i in seq_along(ndviDO_list)) {
+  writeRaster(ndviDO_list[[i]],
+              paste0("ndviDO_", annuals[i], ".tif"),
+              filetype = "GTiff",
+              datatype = "FLT4S",
+              overwrite = TRUE)
+}
+
+
+for (i in seq_along(ndviFC_list)) {
+  writeRaster(ndviFC_list[[i]],
+              paste0("ndviFC_", annuals[i], ".tif"),
+              filetype = "GTiff",
+              datatype = "FLT4S",
+              overwrite = TRUE)
+}
+
+
+
