@@ -896,89 +896,60 @@ BDFplot <- ggplot(BDF_ndvi, aes(x = year, y = mean_ndvi, colour = site, linetype
 
 
 
-ndviBB_list <- list(ndviBBm_20, ndviBBi_20, ndviBBg_21, ndviBBs_21, ndviBBma_22, ndviBBn_22, ndviBBmg_23, ndviBBst_23, ndviBBgn_24, ndviBBse_24)
-ndviDO_list <- list(ndviDOa_20, ndviDOp_20, ndviDOa_21, ndviDOp_21, ndviDOa_22, ndviDOp_22, ndviDOa_23, ndviDOp_23, ndviDOa_24, ndviDOp_24)
-ndviFC_list <- list(ndviFCm_20, ndviFCs_20, ndviFCm_21, ndviFCag_21, ndviFCm_22, ndviFCag_22, ndviFCg_23, ndviFCn_23, ndviFCa_24, ndviFCl_24)
+BB_01_20 <- rast("01_BBm_20.tiff")
+BB_02_20 <- rast("02_BBi_20.tiff")
+BB_03_21 <- rast("03_BBg_21.tiff")
+BB_04_21 <- rast("04_BBs_21.tiff")
+BB_05_22 <- rast("05_BBma_22.tiff")
+BB_06_22 <- rast("05_BBma_22.tiff")
+BB_07_23 <- rast("07_BBmg_23.tiff")
+BB_08_23 <- rast("08_BBst_23.tiff")
+BB_09_24 <- rast("09_BBgn_24.tiff")
+BB_10_24 <- rast("10_BBse_24.tiff")
+
+
+DO_01_20 <- rast("DOa_20.tiff")
+DO_02_20 <- rast("DOp_20.tiff")
+DO_03_21 <- rast("DOa_21.tiff")
+DO_04_21 <- rast("DOp_21.tiff")
+DO_05_22 <- rast("DOa_22.tiff")
+DO_06_22 <- rast("DOp_22.tiff")
+DO_07_23 <- rast("DOa_23.tiff")
+DO_08_23 <- rast("DOp_23.tiff")
+DO_09_24 <- rast("DOa_24.tiff")
+DO_10_24 <- rast("DOp_24.tiff")
+
+
+FC_01_20 <- rast("001_FCm_20.tiff")
+FC_02_20 <- rast("002_FCs_20.tiff")
+FC_03_21 <- rast("FCm_21.tiff")
+FC_04_21 <- rast("FCag_21.tiff")
+FC_05_22 <- rast("FCm_22.tiff")
+FC_06_22 <- rast("FCag_22.tiff")
+FC_07_23 <- rast("FCg_23.tiff")
+FC_08_23 <- rast("FCn_23.tiff")
+FC_09_24 <- rast("FCl_24.tiff")
+FC_10_24 <- rast("FCa_24.tiff")
+
+
+BB_list <- list(BB_01_20, BB_02_20, BB_03_21, BB_04_21, BB_05_22, BB_06_22, BB_07_23, BB_08_23, BB_09_24, BB_10_24)
+DO_list <- list(DO_01_20, DO_02_20, DO_03_21, DO_04_21, DO_05_22, DO_06_22, DO_07_23, DO_08_23, DO_09_24, DO_10_24)
+FC_list <- list(FC_01_20, FC_02_20, FC_03_21, FC_04_21, FC_05_22, FC_06_22, FC_07_23, FC_08_23, FC_09_24, FC_10_24)
 
 annuals <- 0:8
 
-BBlist_scaled <- vector("list", length(ndviBB_list))
-DOlist_scaled <- vector("list", length(ndviDO_list))
-FClist_scaled <- vector("list", length(ndviFC_list))
+BBlist_scaled <- vector("list", length(BB_list))
+DOlist_scaled <- vector("list", length(DO_list))
+FClist_scaled <- vector("list", length(FC_list))
 
-
-
-# Dato che le immagini sono in una scala da -1 e 1 le converto in una da 0 a 255
-
-for (i in seq_along(ndviBB_list))
-  {
+for (i in seq_along(BB_list)) {
   
-  BB <- ndviBB_list[[i]]
-
-  BBscaled <- (BB + 1) / 2 * 255
-  BBscaled <- clamp(BBscaled, 0 , 255)
-
-  BBlist_scaled[[i]] <- BBscaled
+  writeRaster(BB_list[[i]],
+            paste0("BB_", annuals[i], ".png"),
+            filetype = "PNG",
+            overwrite = TRUE)
   
-  }
-
-
-# Salvo i file per ogni anno in versione .png 
-
-for (i in seq_along(ndviBB_list)) 
-{
-  
-    writeRaster (BBlist_scaled[[i]], paste0("ndviBB", annuals[i], ".png"), filetype = "PNG", datatype = "INT1U", overwrite = TRUE)
-
 }
 
-
-
-# Dato che le immagini sono in una scala da -1 e 1 le converto in una da 0 a 255
-
-for (i in seq_along(ndviDO_list))
-  {
-  
-  DO <- ndviDO_list[[i]]
-
-  DOscaled <- (DO + 1) / 2 * 255
-  DOscaled <- clamp(DOscaled, 0 , 255)
-
-  DOlist_scaled[[i]] <- DOscaled
-  
-  }
-
-
-# Salvo i file per ogni anno in versione .png 
-
-for (i in seq_along(ndviDO_list)) 
-{
-  
-    writeRaster (DOlist_scaled[[i]], paste0("ndviDO", annuals[i], ".png"), filetype = "PNG", datatype = "INT1U", overwrite = TRUE)
-
-}
-
-
-
-# Dato che le immagini sono in una scala da -1 e 1 le converto in una da 0 a 255
-for (i in seq_along(ndviFC_list))
-  {
-  
-  FC <- ndviFC_list[[i]]
-
-  FCscaled <- (FC + 1) / 2 * 255
-  FCscaled <- clamp(FCscaled, 0 , 255)
-
-  FClist_scaled[[i]] <- FCscaled
-  
-  }
-
-
-# Salvo i file per ogni anno in versione .png
-for (i in seq_along(ndviFC_list)) 
-{
-  
-    writeRaster (FClist_scaled[[i]], paste0("ndviFC", annuals[i], ".png"), filetype = "PNG", datatype = "INT1U", overwrite = TRUE)
-
-}
-
+BB0 <- system.file("extdata/BB_0.png", package = "recolorize")
+BB0_rec <- recolorize2(BB0, cutoff = 10, plotting = FALSE)
