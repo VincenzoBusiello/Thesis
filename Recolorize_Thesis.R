@@ -890,9 +890,9 @@ BDFplot <- ggplot(BDF_ndvi, aes(x = year, y = mean_ndvi, colour = site, linetype
                        ggtitle("Temporal NDVI trend with duplicate acquisitions")
 
 
-
-  ### USING RECOLORIZE ON NDVI IMAGES ###
-recolorize_hist <- recolorize(img = ndviBBm_20, method = "hist", bins = 3, plotting = FALSE)
+######################
+######################
+######################
 
 
 
@@ -901,33 +901,84 @@ ndviDO_list <- list(ndviDOa_20, ndviDOp_20, ndviDOa_21, ndviDOp_21, ndviDOa_22, 
 ndviFC_list <- list(ndviFCm_20, ndviFCs_20, ndviFCm_21, ndviFCag_21, ndviFCm_22, ndviFCag_22, ndviFCg_23, ndviFCn_23, ndviFCa_24, ndviFCl_24)
 
 annuals <- 0:8
-                       
-                      
-for (i in seq_along(ndviBB_list)) {
-  writeRaster(ndviBB_list[[i]],
-              paste0("ndviBB_", annuals[i], ".tif"),
-              filetype = "GTiff",
-              datatype = "FLT4S",
-              overwrite = TRUE)
+
+BBlist_scaled <- vector("list", length(ndviBB_list))
+DOlist_scaled <- vector("list", length(ndviDO_list))
+FClist_scaled <- vector("list", length(ndviFC_list))
+
+
+
+# Dato che le immagini sono in una scala da -1 e 1 le converto in una da 0 a 255
+
+for (i in seq_along(ndviBB_list))
+  {
+  
+  BB <- ndviBB_list[[i]]
+
+  BBscaled <- (BB + 1) / 2 * 255
+  BBscaled <- clamp(BBscaled, 0 , 255)
+
+  BBlist_scaled[[i]] <- BBscaled
+  
+  }
+
+
+# Salvo i file per ogni anno in versione .png 
+
+for (i in seq_along(ndviBB_list)) 
+{
+  
+    writeRaster (BBlist_scaled[[i]], paste0("ndviBB", annuals[i], ".png"), filetype = "PNG", datatype = "INT1U", overwrite = TRUE)
+
 }
 
 
-for (i in seq_along(ndviDO_list)) {
-  writeRaster(ndviDO_list[[i]],
-              paste0("ndviDO_", annuals[i], ".tif"),
-              filetype = "GTiff",
-              datatype = "FLT4S",
-              overwrite = TRUE)
+
+# Dato che le immagini sono in una scala da -1 e 1 le converto in una da 0 a 255
+
+for (i in seq_along(ndviDO_list))
+  {
+  
+  DO <- ndviDO_list[[i]]
+
+  DOscaled <- (DO + 1) / 2 * 255
+  DOscaled <- clamp(DOscaled, 0 , 255)
+
+  DOlist_scaled[[i]] <- DOscaled
+  
+  }
+
+
+# Salvo i file per ogni anno in versione .png 
+
+for (i in seq_along(ndviDO_list)) 
+{
+  
+    writeRaster (DOlist_scaled[[i]], paste0("ndviDO", annuals[i], ".png"), filetype = "PNG", datatype = "INT1U", overwrite = TRUE)
+
 }
 
 
-for (i in seq_along(ndviFC_list)) {
-  writeRaster(ndviFC_list[[i]],
-              paste0("ndviFC_", annuals[i], ".tif"),
-              filetype = "GTiff",
-              datatype = "FLT4S",
-              overwrite = TRUE)
+
+# Dato che le immagini sono in una scala da -1 e 1 le converto in una da 0 a 255
+for (i in seq_along(ndviFC_list))
+  {
+  
+  FC <- ndviFC_list[[i]]
+
+  FCscaled <- (FC + 1) / 2 * 255
+  FCscaled <- clamp(FCscaled, 0 , 255)
+
+  FClist_scaled[[i]] <- FCscaled
+  
+  }
+
+
+# Salvo i file per ogni anno in versione .png
+for (i in seq_along(ndviFC_list)) 
+{
+  
+    writeRaster (FClist_scaled[[i]], paste0("ndviFC", annuals[i], ".png"), filetype = "PNG", datatype = "INT1U", overwrite = TRUE)
+
 }
-
-
 
