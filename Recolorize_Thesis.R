@@ -880,8 +880,10 @@ BDF_ndvi <- data.frame(
   mean_ndvi = mean_ndvi
 )
 
-BDF_ndvi <- data.frame( year = rep(2020:2024, each = 6), site = rep(rep(c("Bourgneuf Bay", "Donana", "Foreste Casentinesi"), times = 5), replica = rep(c("1st_Half", "2nd_Half"), times = 15), mean_ndvi = mean_ndvi)
-ggplot(BDF_ndvi, aes(x = year, y = mean_ndvi, colour = site, linetype = replica, group = interaction(site, replica))) + 
+BDF_ndvi <- data.frame( year = rep(2020:2024, each = 6), site = rep(c("Bourgneuf Bay", "Donana", "Foreste Casentinesi"), times = 5), replica = rep(c("1st_Half", "2nd_Half"), each = 3), mean_ndvi = mean_ndvi)
+
+
+BDFplot <- ggplot(BDF_ndvi, aes(x = year, y = mean_ndvi, colour = site, linetype = replica, group = interaction(site, replica))) + 
                        geom_line() + 
                        geom_point() + 
                        ylab("Mean NDVI") + 
