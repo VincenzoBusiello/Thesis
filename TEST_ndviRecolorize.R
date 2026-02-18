@@ -1,3 +1,60 @@
+### PLOTTING RED | NIR | NDVI
+
+### 2020
+par(mfrow=c(3,2))
+plot(BBm_20[[1]], col=plasma(10), main="RED")
+plot(BBi_20[[1]], col=plasma(10), main="RED")
+plot(BBm_20[[4]], col=plasma(10), main="NIR")
+plot(BBi_20[[4]], col=plasma(10), main="NIR")
+plot(ndviBBm_20, col=plasma(10), main="NDVI")
+plot(ndviBBi_20, col=plasma(10), main="NDVI")
+
+
+### 2021
+par(mfrow=c(3,2))
+plot(BBg_21[[1]], col=plasma(10), main="RED")
+plot(BBs_21[[1]], col=plasma(10), main="RED")
+plot(BBg_21[[4]], col=plasma(10), main="NIR")
+plot(BBs_21[[4]], col=plasma(10), main="NIR")
+plot(ndviBBg_21, col=plasma(10), main="NDVI")
+plot(ndviBBs_21, col=plasma(10), main="NDVI")
+
+
+### 2022
+par(mfrow=c(3,2))
+plot(BBma_22[[1]], col=plasma(10), main="RED")
+plot(BBn_22[[1]], col=plasma(10), main="RED")
+plot(BBma_22[[4]], col=plasma(10), main="NIR")
+plot(BBn_22[[4]], col=plasma(10), main="NIR")
+plot(ndviBBma_22, col=plasma(10), main="NDVI")
+plot(ndviBBn_22, col=plasma(10), main="NDVI")
+
+
+### 2023
+par(mfrow=c(3,2))
+plot(BBmg_23[[1]], col=plasma(10), main="RED")
+plot(BBst_23[[1]], col=plasma(10), main="RED")
+plot(BBmg_23[[4]], col=plasma(10), main="NIR")
+plot(BBst_23[[4]], col=plasma(10), main="NIR")
+plot(ndviBBmg_23, col=plasma(10), main="NDVI")
+plot(ndviBBst_23, col=plasma(10), main="NDVI")
+
+
+### 2024
+par(mfrow=c(3,2))
+plot(BBgn_24[[1]], col=plasma(10), main="RED")
+plot(BBse_24[[1]], col=plasma(10), main="RED")
+plot(BBgn_24[[4]], col=plasma(10), main="NIR")
+plot(BBse_24[[4]], col=plasma(10), main="NIR")
+plot(ndviBBgn_24, col=plasma(10), main="NDVI")
+plot(ndviBBse_24, col=plasma(10), main="NDVI")
+
+
+
+########################################################################
+
+
+
 BB_NDVI <- list(ndviBBm_20, ndviBBi_20, ndviBBg_21, ndviBBs_21, ndviBBma_22, ndviBBn_22, ndviBBmg_23, ndviBBst_23, ndviBBgn_24, ndviBBse_24)
 DO_NDVI <- list(ndviDOa_20, ndviDOp_20, ndviDOa_21, ndviDOp_21, ndviDOa_22, ndviDOp_22, ndviDOa_23, ndviDOp_23, ndviDOa_24, ndviDOp_24)
 FC_NDVI <- list(ndviFCm_20, ndviFCs_20, ndviFCm_21, ndviFCag_21, ndviFCm_22, ndviFCag_22, ndviFCg_23, ndviFCn_23, ndviFCa_24, ndviFCl_24)
