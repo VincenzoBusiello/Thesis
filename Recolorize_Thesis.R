@@ -236,57 +236,6 @@ ndviBBse_24 = difBBse_24 / sumBBse_24
 plot(ndviBBse_24, col=mako(10))
 
 
-### PLOTTING RED | NIR | NDVI
-
-### 2020
-par(mfrow=c(3,2))
-plot(BBm_20[[1]], col=plasma(10), main="RED")
-plot(BBi_20[[1]], col=plasma(10), main="RED")
-plot(BBm_20[[4]], col=plasma(10), main="NIR")
-plot(BBi_20[[4]], col=plasma(10), main="NIR")
-plot(ndviBBm_20, col=plasma(10), main="NDVI")
-plot(ndviBBi_20, col=plasma(10), main="NDVI")
-
-
-### 2021
-par(mfrow=c(3,2))
-plot(BBg_21[[1]], col=plasma(10), main="RED")
-plot(BBs_21[[1]], col=plasma(10), main="RED")
-plot(BBg_21[[4]], col=plasma(10), main="NIR")
-plot(BBs_21[[4]], col=plasma(10), main="NIR")
-plot(ndviBBg_21, col=plasma(10), main="NDVI")
-plot(ndviBBs_21, col=plasma(10), main="NDVI")
-
-
-### 2022
-par(mfrow=c(3,2))
-plot(BBma_22[[1]], col=plasma(10), main="RED")
-plot(BBn_22[[1]], col=plasma(10), main="RED")
-plot(BBma_22[[4]], col=plasma(10), main="NIR")
-plot(BBn_22[[4]], col=plasma(10), main="NIR")
-plot(ndviBBma_22, col=plasma(10), main="NDVI")
-plot(ndviBBn_22, col=plasma(10), main="NDVI")
-
-
-### 2023
-par(mfrow=c(3,2))
-plot(BBmg_23[[1]], col=plasma(10), main="RED")
-plot(BBst_23[[1]], col=plasma(10), main="RED")
-plot(BBmg_23[[4]], col=plasma(10), main="NIR")
-plot(BBst_23[[4]], col=plasma(10), main="NIR")
-plot(ndviBBmg_23, col=plasma(10), main="NDVI")
-plot(ndviBBst_23, col=plasma(10), main="NDVI")
-
-
-### 2024
-par(mfrow=c(3,2))
-plot(BBgn_24[[1]], col=plasma(10), main="RED")
-plot(BBse_24[[1]], col=plasma(10), main="RED")
-plot(BBgn_24[[4]], col=plasma(10), main="NIR")
-plot(BBse_24[[4]], col=plasma(10), main="NIR")
-plot(ndviBBgn_24, col=plasma(10), main="NDVI")
-plot(ndviBBse_24, col=plasma(10), main="NDVI")
-
 
 #____________________________________________________________________________________#
 #---------------------------   DONANA NATIONAL PARK   -------------------------------#
@@ -986,7 +935,7 @@ BB8 <- system.file("extdata/BB_8.png", package = "recolorize")
 BB9 <- system.file("extdata/BB_NA.png", package = "recolorize")
 
 
-# Applying recolorize2(): first step segment color usiing color binning; second step combine existing clusters
+# Applying recolorize2(): first step: segment color using color binning; second step: combine existing clusters
 # based on color similarity
 BB0_rec <- recolorize2(BB0, cutoff = 10, plotting = FALSE)
 BB1_rec <- recolorize2(BB1, cutoff = 10, plotting = FALSE)
@@ -999,9 +948,9 @@ BB7_rec <- recolorize2(BB7, cutoff = 10, plotting = FALSE)
 BB8_rec <- recolorize2(BB8, cutoff = 10, plotting = FALSE)
 BB9_rec <- recolorize2(BB9, cutoff = 10, plotting = FALSE)
 
-#
-#layout(matrix(1:8, nrow = 2, byrow = TRUE))
-#par(mar = c(0,0,2,0))
+# setting layout
+layout(matrix(1:8, nrow = 2, byrow = TRUE))
+par(mar = c(0,0,2,0))
 
 # Splitting color map in single layers 
 lay_BB0 <- splitByColor(BB0_rec, plot_method = "overlay") 
