@@ -2,8 +2,8 @@ library(terra) # used for spatial data life raster or vector data
 library(imageRy) # handling raster images
 library(ggplot2)# for graphs
 library(viridis) # alternative color palettes 
-library(patchwork) # for multiple grapsh on a single plot
-library(recolorize)
+library(patchwork) # for multiple graphs on a single plot
+library(recolorize) # color segmentation and color clustering
 
 
 
@@ -1169,7 +1169,7 @@ DO5 <- system.file("extdata/DO_5.png", package = "recolorize")
 DO6 <- system.file("extdata/DO_6.png", package = "recolorize")
 DO7 <- system.file("extdata/DO_7.png", package = "recolorize")
 DO8 <- system.file("extdata/DO_8.png", package = "recolorize")
-DO9 <- system.file("extdata/DO_9.png", package = "recolorize")
+DO9 <- system.file("extdata/DO_NA.png", package = "recolorize")
 
 
 # Applying recolorize2(): first step segment color usiing color binning; second step combine existing clusters
@@ -1186,10 +1186,11 @@ DO8_rec <- recolorize2(DO8, cutoff = 10, plotting = FALSE)
 DO9_rec <- recolorize2(DO9, cutoff = 10, plotting = FALSE)
 
 #
-#layout(matrix(1:8, nrow = 2, byrow = TRUE))
-#par(mar = c(0,0,2,0))
+layout(matrix(1:6, nrow = 2, byrow = TRUE))
+par(mar = c(0,0,2,0))
 
-# Splitting color map in single layers 
+# Splitting color map in single layers and visualising them on a layout formed by 3 cols and 2 rows, each image with
+# a color section
 lay_DO0 <- splitByColor(DO0_rec, plot_method = "overlay") 
 lay_DO1 <- splitByColor(DO1_rec, plot_method = "overlay")
 lay_DO2 <- splitByColor(DO2_rec, plot_method = "overlay")
@@ -1280,61 +1281,248 @@ for (i in 1:length(lay_DO9))
 ###################################################
 
 
- for (i in 1:length(lay_BB0)) 
+ for (i in 1:length(lay_DO0)) 
           {
-              png::writePNG(lay_BB0[[i]], target = paste0("BB0_layer_", i, ".png"))
+              png::writePNG(lay_DO0[[i]], target = paste0("DO0_layer_", i, ".png"))
           }
 
 
- for (i in 1:length(lay_BB1)) 
+ for (i in 1:length(lay_DO1)) 
           {
-              png::writePNG(lay_BB1[[i]], target = paste0("BB1_layer_", i, ".png"))
+              png::writePNG(lay_DO1[[i]], target = paste0("DO1_layer_", i, ".png"))
           }
 
 
- for (i in 1:length(lay_BB2)) 
+ for (i in 1:length(lay_DO2)) 
           {
-              png::writePNG(lay_BB2[[i]], target = paste0("BB2_layer_", i, ".png"))
+              png::writePNG(lay_DO2[[i]], target = paste0("DO2_layer_", i, ".png"))
           }
 
 
- for (i in 1:length(lay_BB3)) 
+ for (i in 1:length(lay_DO3)) 
           {
-              png::writePNG(lay_BB3[[i]], target = paste0("BB3_layer_", i, ".png"))
+              png::writePNG(lay_DO3[[i]], target = paste0("DO3_layer_", i, ".png"))
           }
 
 
- for (i in 1:length(lay_BB4))
+ for (i in 1:length(lay_DO4))
           {
-              png::writePNG(lay_BB4[[i]], target = paste0("BB4_layer_", i, ".png"))
+              png::writePNG(lay_DO4[[i]], target = paste0("DO4_layer_", i, ".png"))
           }
 
 
- for (i in 1:length(lay_BB5))
+ for (i in 1:length(lay_DO5))
           {
-              png::writePNG(lay_BB5[[i]], target = paste0("BB5_layer_", i, ".png"))
+              png::writePNG(lay_DO5[[i]], target = paste0("DO5_layer_", i, ".png"))
           }
 
 
- for (i in 1:length(lay_BB6))
+ for (i in 1:length(lay_DO6))
           {
-              png::writePNG(lay_BB6[[i]], target = paste0("BB6_layer_", i, ".png"))
+              png::writePNG(lay_DO6[[i]], target = paste0("DO6_layer_", i, ".png"))
           }
 
 
- for (i in 1:length(lay_BB7))
+ for (i in 1:length(lay_DO7))
           {
-              png::writePNG(lay_BB7[[i]], target = paste0("BB7_layer_", i, ".png"))
+              png::writePNG(lay_DO7[[i]], target = paste0("DO7_layer_", i, ".png"))
           }
 
 
- for (i in 1:length(lay_BB8))
+ for (i in 1:length(lay_DO8))
           {
-              png::writePNG(lay_BB8[[i]], target = paste0("BB8_layer_", i, ".png"))
+              png::writePNG(lay_DO8[[i]], target = paste0("DO8_layer_", i, ".png"))
           }
 
 
- for (i in 1:length(lay_BB9))
+ for (i in 1:length(lay_DO9))
           {
-              png::writePNG(lay_BB9[[i]], target = paste0("BB9_layer_", i, ".png"))
+              png::writePNG(lay_DO9[[i]], target = paste0("DO9_layer_", i, ".png"))
           }
+
+#####################################################
+###### USING RECOLORIZE ON FORESTE CASENTINESI ######
+#####################################################
+
+
+# Importing data from package recolorize
+FC0 <- system.file("extdata/FC_0.png", package = "recolorize")
+FC1 <- system.file("extdata/FC_1.png", package = "recolorize")
+FC2 <- system.file("extdata/FC_2.png", package = "recolorize")
+FC3 <- system.file("extdata/FC_3.png", package = "recolorize")
+FC4 <- system.file("extdata/FC_4.png", package = "recolorize")
+FC5 <- system.file("extdata/FC_5.png", package = "recolorize")
+FC6 <- system.file("extdata/FC_6.png", package = "recolorize")
+FC7 <- system.file("extdata/FC_7.png", package = "recolorize")
+FC8 <- system.file("extdata/FC_8.png", package = "recolorize")
+FC9 <- system.file("extdata/FC_NA.png", package = "recolorize")
+
+
+# Applying recolorize2(): first step segment color usiing color binning; second step combine existing clusters
+# based on color similarity
+FC0_rec <- recolorize2(FC0, cutoff = 10, plotting = FALSE)
+FC1_rec <- recolorize2(FC1, cutoff = 10, plotting = FALSE)
+FC2_rec <- recolorize2(FC2, cutoff = 10, plotting = FALSE)
+FC3_rec <- recolorize2(FC3, cutoff = 10, plotting = FALSE)
+FC4_rec <- recolorize2(FC4, cutoff = 10, plotting = FALSE)
+FC5_rec <- recolorize2(FC5, cutoff = 10, plotting = FALSE)
+FC6_rec <- recolorize2(FC6, cutoff = 10, plotting = FALSE)
+FC7_rec <- recolorize2(FC7, cutoff = 10, plotting = FALSE)
+FC8_rec <- recolorize2(FC8, cutoff = 10, plotting = FALSE)
+FC9_rec <- recolorize2(FC9, cutoff = 10, plotting = FALSE)
+
+#
+layout(matrix(1:6, nrow = 2, byrow = TRUE))
+par(mar = c(0,0,2,0))
+
+# Splitting color map in single layers and visualising them on a layout formed by 3 cols and 2 rows, each image with
+# a color section
+lay_FC0 <- splitByColor(FC0_rec, plot_method = "overlay") 
+lay_FC1 <- splitByColor(FC1_rec, plot_method = "overlay")
+lay_FC2 <- splitByColor(FC2_rec, plot_method = "overlay")
+lay_FC3 <- splitByColor(FC3_rec, plot_method = "overlay")
+lay_FC4 <- splitByColor(FC4_rec, plot_method = "overlay")
+lay_FC5 <- splitByColor(FC5_rec, plot_method = "overlay")
+lay_FC6 <- splitByColor(FC6_rec, plot_method = "overlay")
+lay_FC7 <- splitByColor(FC7_rec, plot_method = "overlay")
+lay_FC8 <- splitByColor(FC8_rec, plot_method = "overlay")
+lay_FC9 <- splitByColor(FC9_rec, plot_method = "overlay")
+
+### creating png files of every recolored image
+
+for (i in 1:length(lay_FC0))
+    {
+        plotImageArray(lay_FC0[[i]], main = i)
+    }
+
+recolorize_to_png(FC0_rec, filename = "FC0_recolored.png")
+
+for (i in 1:length(lay_FC1))
+    {
+        plotImageArray(lay_FC1[[i]], main = i)
+    }
+
+ recolorize_to_png(FC1_rec, filename = "FC1_recolored.png")
+
+for (i in 1:length(lay_FC2))
+    {
+        plotImageArray(lay_FC2[[i]], main = i)
+    }
+
+ recolorize_to_png(FC2_rec, filename = "FC2_recolored.png")
+
+for (i in 1:length(lay_FC3))
+    {
+        plotImageArray(lay_FC3[[i]], main = i)
+    }
+
+ recolorize_to_png(FC3_rec, filename = "FC3_recolored.png")
+
+for (i in 1:length(lay_FC4))
+    {
+        plotImageArray(lay_FC4[[i]], main = i)
+    }
+
+ recolorize_to_png(FC4_rec, filename = "FC4_recolored.png")
+
+for (i in 1:length(lay_FC5))
+    {
+        plotImageArray(lay_FC5[[i]], main = i)
+    }
+
+ recolorize_to_png(FC5_rec, filename = "FC5_recolored.png")
+
+for (i in 1:length(lay_FC6))
+    {
+        plotImageArray(lay_FC6[[i]], main = i)
+    }
+
+ recolorize_to_png(FC6_rec, filename = "FC6_recolored.png")
+
+for (i in 1:length(lay_FC7))
+    {
+        plotImageArray(lay_FC7[[i]], main = i)
+    }
+
+ recolorize_to_png(FC7_rec, filename = "FC7_recolored.png")
+
+for (i in 1:length(lay_FC8))
+    {
+        plotImageArray(lay_FC8[[i]], main = i)
+    }
+
+ recolorize_to_png(FC8_rec, filename = "FC8_recolored.png")
+
+for (i in 1:length(lay_FC9))
+    {
+        plotImageArray(lay_FC9[[i]], main = i)
+    }
+
+ recolorize_to_png(FC9_rec, filename = "FC9_recolored.png")
+
+
+
+###################################################
+## saving single binary layers in .png extension ##
+###################################################
+
+
+ for (i in 1:length(lay_FC0)) 
+          {
+              png::writePNG(lay_FC0[[i]], target = paste0("FC0_layer_", i, ".png"))
+          }
+
+
+ for (i in 1:length(lay_FC1)) 
+          {
+              png::writePNG(lay_FC1[[i]], target = paste0("FC1_layer_", i, ".png"))
+          }
+
+
+ for (i in 1:length(lay_FC2)) 
+          {
+              png::writePNG(lay_FC2[[i]], target = paste0("FC2_layer_", i, ".png"))
+          }
+
+
+ for (i in 1:length(lay_FC3)) 
+          {
+              png::writePNG(lay_FC3[[i]], target = paste0("FC3_layer_", i, ".png"))
+          }
+
+
+ for (i in 1:length(lay_FC4))
+          {
+              png::writePNG(lay_FC4[[i]], target = paste0("FC4_layer_", i, ".png"))
+          }
+
+
+ for (i in 1:length(lay_FC5))
+          {
+              png::writePNG(lay_FC5[[i]], target = paste0("FC5_layer_", i, ".png"))
+          }
+
+
+ for (i in 1:length(lay_FC6))
+          {
+              png::writePNG(lay_FC6[[i]], target = paste0("FC6_layer_", i, ".png"))
+          }
+
+
+ for (i in 1:length(lay_FC7))
+          {
+              png::writePNG(lay_FC7[[i]], target = paste0("FC7_layer_", i, ".png"))
+          }
+
+
+ for (i in 1:length(lay_FC8))
+          {
+              png::writePNG(lay_FC8[[i]], target = paste0("FC8_layer_", i, ".png"))
+          }
+
+
+ for (i in 1:length(lay_FC9))
+          {
+              png::writePNG(lay_FC9[[i]], target = paste0("FC9_layer_", i, ".png"))
+          }
+
