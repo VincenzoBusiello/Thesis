@@ -134,7 +134,7 @@ BB9_rast <- rast(
   crs  = crs(BB_10_24)
 )
 
-
+# Trasposizione della matrice BB0_pa per evitare che l'immagine raster fuoriesca trasposta/specchiata
 values(BB0_rast) <- as.vector(t(BB0_pa))
 plot(BB0_rast, col = viridis (100))
 
@@ -179,8 +179,8 @@ staBB9 <- c(BB9_rast, ndviBBse_24)
 
 # rinomino le classi in cluster e ndvi
 names(staBB0) <- c("cluster", "ndvi")
-extract_dfBB0 <- as.data.frame(staBB0, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfBB0, mean) # è una funzione che mi permette di raggruppare i pixel per cluster cromatico, calcolare la mediana dei valori NDVI in ciascun gruppo e restituire un dataframe riassuntivo
+extract_dfBB0 <- as.data.frame(staBB0, na.rm = TRUE) # na.rm serve per rimuovere i valori NA
+aggregate(ndvi ~ cluster, data = extract_dfBB0, median) # è una funzione che mi permette di raggruppare i pixel per cluster cromatico, calcolare la mediana dei valori NDVI in ciascun gruppo e restituire un dataframe riassuntivo
 boxplot(ndvi ~ cluster, data = extract_dfBB0) # mi mostra i bocplot per ogni cluster
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB0) # calcolo il test di Kruskal-Wallis
 
