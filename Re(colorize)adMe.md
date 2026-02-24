@@ -60,5 +60,7 @@ boxplot(ndvi ~ cluster, data = extract_dfFC0)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC0)
 # Kruskal-Wallis chi-squared = 449361, df = 4, p-value < 2.2e-16
 ```
+Here is the graph showing the assignment of clusters according to NDVI values. You can see how the values contained in cluster 1 are those associated with vegetation with the highest NDVI level and therefore the highest level of well-being. You can also see how the values contained within cluster 5 are associated with stressed vegetation, with NDVI values between 0.3 and 0.5.
 
+<img src="https://github.com/VincenzoBusiello/Thesis/blob/main/KWDO0.png?raw=true" width ="250px">
 
