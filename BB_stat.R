@@ -183,14 +183,14 @@ extract_dfBB0 <- as.data.frame(staBB0, na.rm = TRUE) # na.rm serve per rimuovere
 aggregate(ndvi ~ cluster, data = extract_dfBB0, median) # è una funzione che mi permette di raggruppare i pixel per cluster cromatico, calcolare la mediana dei valori NDVI in ciascun gruppo e restituire un dataframe riassuntivo
 boxplot(ndvi ~ cluster, data = extract_dfBB0) # mi mostra i bocplot per ogni cluster
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB0) # calcolo il test di Kruskal-Wallis
-
+# Kruskal-Wallis chi-squared = 920021, df = 4, p-value < 2.2e-16
 
 names(staBB1) <- c("cluster", "ndvi")
 extract_dfBB1 <- as.data.frame(staBB1, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfBB1, mean)
 boxplot(ndvi ~ cluster, data = extract_dfBB1)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB1) # calcolo il test di Kruskal-Wallis
-# Kruskal-Wallis chi-squared = 920021, df = 4, p-value < 2.2e-16
+# Kruskal-Wallis chi-squared = 810823, df = 4, p-value < 2.2e-16
 
 names(staBB2) <- c("cluster", "ndvi")
 extract_dfBB2 <- as.data.frame(staBB2, na.rm = TRUE)
