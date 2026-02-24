@@ -17,3 +17,48 @@ Parco Nazionale delle Foreste Casentinesi, Monte Falterona e Campigna, Italy
 Parco Nazionale delle Foreste Casentinesi, Monte Falterona e Campigna covers an area of 368 km², extending across the administrative boundaries of two Italian regions, Emilia-Romagna and Tuscany, and reaching altitudes between 500 and 1600 m in the Tuscan-Emilian Apennines. The forest environment is the dominant one, and some of these are of significant conservation interest, such as the Sasso Fratino integral nature reserve. 
 
 ## The Code
+Below are some examples of how images were constructed from satellite images and how the functions contained in the recolorize package were used to process them and make them usable in conjunction with images derived from NDVI calculations. 
+
+
+```R
+# creating the spatRaster file 
+BBm1_20 <- rast("BBm4_20.tiff")
+BBm2_20 <- rast("BBm3_20.tiff")
+BBm3_20 <- rast("BBm2_20.tiff")
+BBm4_20 <- rast("BBm8_20.tiff")
+BBm_20 <- c(BBm1_20, BBm2_20, BBm3_20, BBm4_20)
+
+# plotting the same file whit different filters
+im.plotRGB(BBm_20, 1,2,3)
+im.plotRGB(BBm_20, 4,2,3)
+
+
+## calculating NDVI
+difBBm_20 = BBm_20[[4]] - BBm_20[[1]] # NIR - RED
+sumBBm_20 = BBm_20[[4]] + BBm_20[[1]] # NIR + RED
+ndviBBm_20 = difBBm_20 / sumBBm_20
+
+plot(ndviBBm_20, col=mako(10))
+
+```
+<img src="https://github.com/VincenzoBusiello/Thesis/blob/main/NDVIBB0.png?raw=true" width = "250px">
+***
+
+Here the creation of color segmentation with recolorize() function:
+```R
+DO0 <- system.file("extdata/DO_0.png", package = "recolorize")
+DO0_rec <- recolorize(DO0, method= "kmeans", n = 5)
+```
+<img src="https://github.com/VincenzoBusiello/Thesis/blob/main/DO0_plot.png?raw=true" width ="250px">
+
+Below is a small portion of the code used to calculate the Kruskal-Wallis test to see if the color segmentation clusters have different NDVI value distributions.
+```R
+names(staFC0) <- c("cluster", "ndvi")
+extract_dfFC0 <- as.data.frame(staFC0, na.rm = TRUE) 
+aggregate(ndvi ~ cluster, data = extract_dfFC0, median) 
+boxplot(ndvi ~ cluster, data = extract_dfFC0)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC0)
+# Kruskal-Wallis chi-squared = 449361, df = 4, p-value < 2.2e-16
+```
+
+
