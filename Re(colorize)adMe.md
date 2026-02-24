@@ -4,7 +4,7 @@
 
 <p style="text-align:center"> Geo-ecological remote sensing is a useful tool for assessing the state of ecosystems, allowing the best conservation and management strategies for protected areas and/or areas of conservation interest to be considered. This is made possible by using images acquired by satellites, such as those dedicated to the European Copernicus program (S-2A, S-2B, and S-2C), configured to allow the sampling of 13 spectral bands with different spatial resolutions. Furthermore, the delicacy and importance of ecosystems such as coastal, wetland, and forest areas is well known, both in economic terms and in terms of their intrinsic importance for life itself, both ours and that of the planet. The study areas are mainly three sites located at the vertices of a triangle comprising Italy, Spain, and France. Analyses of the state of vegetation were carried out by calculating the NDVI (Normalized Difference Vegetation Index) in order to assess the health of the vegetation. In addition, the same images from the three different sites, two for each year from 2020 to 2024, were then analyzed from a chromatic point of view using the **recolorize** package in the **R** environment. This made it possible to build color clusters that could divide the images according to their belonging to certain color classes, which were associated with vegetative and non-vegetative surfaces based on their association with the calculated NDVI values. In some cases where vegetation cover was abundant, this method was also able to discriminate between different color classes. </p>
 
-<center> <img src="https://github.com/VincenzoBusiello/Thesis/blob/main/BB_1.png?raw=true" width="250px"> </center>
+<img src="https://github.com/VincenzoBusiello/Thesis/blob/main/BB_1.png?raw=true" width="250px">
 Bourgneuf Bay, France
 The Bay of Bourgneuf is located along the Atlantic coast of western France, occupying an area extending up to 340 km² between the French departments of Loire-Atlantique and Vendée. In the southwestern part of the bay lies the island of Noirmoutier, which protects the coast and the Zostera noltei meadows found there, as well as the Crassostrea gigas oyster farms, from the ocean currents coming in from the Atlantic.
 
@@ -15,3 +15,5 @@ Doñana National Park is located in southwestern Spain, more precisely in the re
 <img src="https://github.com/VincenzoBusiello/Thesis/blob/main/FC_8.png?raw=true" width="250px">
 Parco Nazionale delle Foreste Casentinesi, Monte Falterona e Campigna, Italy
 Parco Nazionale delle Foreste Casentinesi, Monte Falterona e Campigna covers an area of 368 km², extending across the administrative boundaries of two Italian regions, Emilia-Romagna and Tuscany, and reaching altitudes between 500 and 1600 m in the Tuscan-Emilian Apennines. The forest environment is the dominant one, and some of these are of significant conservation interest, such as the Sasso Fratino integral nature reserve. 
+
+## The Code
