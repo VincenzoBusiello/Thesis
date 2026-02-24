@@ -6,7 +6,12 @@
 
 <center> <img src="https://github.com/VincenzoBusiello/Thesis/blob/main/BB_1.png?raw=true" width="250px"> </center>
 Bourgneuf Bay, France
+The Bay of Bourgneuf is located along the Atlantic coast of western France, occupying an area extending up to 340 km² between the French departments of Loire-Atlantique and Vendée. In the southwestern part of the bay lies the island of Noirmoutier, which protects the coast and the Zostera noltei meadows found there, as well as the Crassostrea gigas oyster farms, from the ocean currents coming in from the Atlantic.
+
 <img src="https://github.com/VincenzoBusiello/Thesis/blob/main/DO_NA.png?raw=true" width="250px">
 Donana National Park, Spain
+Doñana National Park is located in southwestern Spain, more precisely in the region of Andalusia, and covers an area of approximately 54,000 square kilometers. Due to its ecological composition, it is considered one of Europe's greatest sanctuaries for bird migration, as well as one of the few places in Europe where marsh, lagoon, dune, and forest environments converge in a Mediterranean climate influenced by sea currents from the Atlantic. Given the concentration of rainfall, it is possible to identify two distinct seasons: the wet season from March to October and the dry season from April to September. 
+
 <img src="https://github.com/VincenzoBusiello/Thesis/blob/main/FC_8.png?raw=true" width="250px">
 Parco Nazionale delle Foreste Casentinesi, Monte Falterona e Campigna, Italy
+Parco Nazionale delle Foreste Casentinesi, Monte Falterona e Campigna covers an area of 368 km², extending across the administrative boundaries of two Italian regions, Emilia-Romagna and Tuscany, and reaching altitudes between 500 and 1600 m in the Tuscan-Emilian Apennines. The forest environment is the dominant one, and some of these are of significant conservation interest, such as the Sasso Fratino integral nature reserve. 
