@@ -450,7 +450,7 @@ ndviDOa_24 = difDOa_24 / sumDOa_24
 plot(ndviDOa_24, col=mako(10))
 
 #___________________________________________#
-#              2nd half 2023                #
+#              2nd half 2024                #
 #___________________________________________#
 
 DOp1_24 <- rast("DOp4_24.tiff")
@@ -829,7 +829,7 @@ BDF_ndvi <- data.frame(
   mean_ndvi = mean_ndvi
 )
 
-BDF_ndvi <- data.frame( year = rep(2020:2024, each = 6), site = rep(c("Bourgneuf Bay", "Donana", "Foreste Casentinesi"), times = 5), replica = rep(c("1st_Half", "2nd_Half"), each = 3), mean_ndvi = mean_ndvi)
+# BDF_ndvi <- data.frame( year = rep(2020:2024, each = 6), site = rep(c("Bourgneuf Bay", "Donana", "Foreste Casentinesi"), times = 5), replica = rep(c("1st_Half", "2nd_Half"), each = 3), mean_ndvi = mean_ndvi)
 
 
 BDFplot <- ggplot(BDF_ndvi, aes(x = year, y = mean_ndvi, colour = site, linetype = replica, group = interaction(site, replica))) + 
@@ -851,7 +851,7 @@ BB_02_20 <- rast("02_BBi_20.tiff")
 BB_03_21 <- rast("03_BBg_21.tiff")
 BB_04_21 <- rast("04_BBs_21.tiff")
 BB_05_22 <- rast("05_BBma_22.tiff")
-BB_06_22 <- rast("05_BBma_22.tiff")
+BB_06_22 <- rast("06_BBn_22.tiff")
 BB_07_23 <- rast("07_BBmg_23.tiff")
 BB_08_23 <- rast("08_BBst_23.tiff")
 BB_09_24 <- rast("09_BBgn_24.tiff")
@@ -886,7 +886,7 @@ BB_list <- list(BB_01_20, BB_02_20, BB_03_21, BB_04_21, BB_05_22, BB_06_22, BB_0
 DO_list <- list(DO_01_20, DO_02_20, DO_03_21, DO_04_21, DO_05_22, DO_06_22, DO_07_23, DO_08_23, DO_09_24, DO_10_24)
 FC_list <- list(FC_01_20, FC_02_20, FC_03_21, FC_04_21, FC_05_22, FC_06_22, FC_07_23, FC_08_23, FC_09_24, FC_10_24)
 
-annuals <- 0:8
+annuals <- 0:9
 
 setwd("C:/Tesi/ImmaginRec")
 
@@ -935,172 +935,243 @@ BB8 <- system.file("extdata/BB_8.png", package = "recolorize")
 BB9 <- system.file("extdata/BB_NA.png", package = "recolorize")
 
 
-# Applying recolorize2(): first step: segment color using color binning; second step: combine existing clusters
-# based on color similarity
-BB0_rec <- recolorize2(BB0, cutoff = 10, plotting = FALSE)
-BB1_rec <- recolorize2(BB1, cutoff = 10, plotting = FALSE)
-BB2_rec <- recolorize2(BB2, cutoff = 10, plotting = FALSE)
-BB3_rec <- recolorize2(BB3, cutoff = 10, plotting = FALSE)
-BB4_rec <- recolorize2(BB4, cutoff = 10, plotting = FALSE)
-BB5_rec <- recolorize2(BB5, cutoff = 10, plotting = FALSE)
-BB6_rec <- recolorize2(BB6, cutoff = 10, plotting = FALSE)
-BB7_rec <- recolorize2(BB7, cutoff = 10, plotting = FALSE)
-BB8_rec <- recolorize2(BB8, cutoff = 10, plotting = FALSE)
-BB9_rec <- recolorize2(BB9, cutoff = 10, plotting = FALSE)
+# applying recolorize() with 5 clusters 
+BB0_rec <- recolorize(BB0, method= "kmeans", n = 5)
+BB1_rec <- recolorize(BB1, method= "kmeans", n = 5)
+BB2_rec <- recolorize(BB2, method= "kmeans", n = 5)
+BB3_rec <- recolorize(BB3, method= "kmeans", n = 5)
+BB4_rec <- recolorize(BB4, method= "kmeans", n = 5)
+BB5_rec <- recolorize(BB5, method= "kmeans", n = 5)
+BB6_rec <- recolorize(BB6, method= "kmeans", n = 5)
+BB7_rec <- recolorize(BB7, method= "kmeans", n = 5)
+BB8_rec <- recolorize(BB8, method= "kmeans", n = 5)
+BB9_rec <- recolorize(BB9, method= "kmeans", n = 5)
 
-# setting layout
-layout(matrix(1:8, nrow = 2, byrow = TRUE))
-par(mar = c(0,0,2,0))
+# calculation of a matrix based on the assignment of each pixel to the color cluster to which it belongs
+BB0_pa <- BB0_rec$pixel_assignments
+BB1_pa <- BB1_rec$pixel_assignments
+BB2_pa <- BB2_rec$pixel_assignments
+BB3_pa <- BB3_rec$pixel_assignments
+BB4_pa <- BB4_rec$pixel_assignments
+BB5_pa <- BB5_rec$pixel_assignments
+BB6_pa <- BB6_rec$pixel_assignments
+BB7_pa <- BB7_rec$pixel_assignments
+BB8_pa <- BB8_rec$pixel_assignments
+BB9_pa <- BB9_rec$pixel_assignments
 
-# Splitting color map in single layers 
-lay_BB0 <- splitByColor(BB0_rec, plot_method = "overlay") 
-lay_BB1 <- splitByColor(BB1_rec, plot_method = "overlay")
-lay_BB2 <- splitByColor(BB2_rec, plot_method = "overlay")
-lay_BB3 <- splitByColor(BB3_rec, plot_method = "overlay")
-lay_BB4 <- splitByColor(BB4_rec, plot_method = "overlay")
-lay_BB5 <- splitByColor(BB5_rec, plot_method = "overlay")
-lay_BB6 <- splitByColor(BB6_rec, plot_method = "overlay")
-lay_BB7 <- splitByColor(BB7_rec, plot_method = "overlay")
-lay_BB8 <- splitByColor(BB8_rec, plot_method = "overlay")
-lay_BB9 <- splitByColor(BB9_rec, plot_method = "overlay")
+# conversion of recolored images in raster files
+BB0_rast <- rast(
+  nrows = nrow(BB_01_20),
+  ncols = ncol(BB_01_20),
+  xmin = xmin(BB_01_20),
+  xmax = xmax(BB_01_20),
+  ymin = ymin(BB_01_20),
+  ymax = ymax(BB_01_20),
+  crs  = crs(BB_01_20)
+)
 
-### creating png files of every recolored image
+BB1_rast <- rast(
+  nrows = nrow(BB_02_20),
+  ncols = ncol(BB_02_20),
+  xmin = xmin(BB_02_20),
+  xmax = xmax(BB_02_20),
+  ymin = ymin(BB_02_20),
+  ymax = ymax(BB_02_20),
+  crs  = crs(BB_02_20)
+)
 
-for (i in 1:length(lay_BB0))
-    {
-        plotImageArray(lay_BB0[[i]], main = i)
-    }
+BB2_rast <- rast(
+  nrows = nrow(BB_03_21),
+  ncols = ncol(BB_03_21),
+  xmin = xmin(BB_03_21),
+  xmax = xmax(BB_03_21),
+  ymin = ymin(BB_03_21),
+  ymax = ymax(BB_03_21),
+  crs  = crs(BB_03_21)
+)
 
-recolorize_to_png(BB0_rec, filename = "BB0_recolored.png")
+BB3_rast <- rast(
+  nrows = nrow(BB_04_21),
+  ncols = ncol(BB_04_21),
+  xmin = xmin(BB_04_21),
+  xmax = xmax(BB_04_21),
+  ymin = ymin(BB_04_21),
+  ymax = ymax(BB_04_21),
+  crs  = crs(BB_04_21)
+)
 
-for (i in 1:length(lay_BB1))
-    {
-        plotImageArray(lay_BB1[[i]], main = i)
-    }
+BB4_rast <- rast(
+  nrows = nrow(BB_05_22),
+  ncols = ncol(BB_05_22),
+  xmin = xmin(BB_05_22),
+  xmax = xmax(BB_05_22),
+  ymin = ymin(BB_05_22),
+  ymax = ymax(BB_05_22),
+  crs  = crs(BB_05_22)
+)
 
- recolorize_to_png(BB1_rec, filename = "BB1_recolored.png")
+BB5_rast <- rast(
+  nrows = nrow(BB_06_22),
+  ncols = ncol(BB_06_22),
+  xmin = xmin(BB_06_22),
+  xmax = xmax(BB_06_22),
+  ymin = ymin(BB_06_22),
+  ymax = ymax(BB_06_22),
+  crs  = crs(BB_06_22)
+)
 
-for (i in 1:length(lay_BB2))
-    {
-        plotImageArray(lay_BB2[[i]], main = i)
-    }
+BB6_rast <- rast(
+  nrows = nrow(BB_07_23),
+  ncols = ncol(BB_07_23),
+  xmin = xmin(BB_07_23),
+  xmax = xmax(BB_07_23),
+  ymin = ymin(BB_07_23),
+  ymax = ymax(BB_07_23),
+  crs  = crs(BB_07_23)
+)
 
- recolorize_to_png(BB2_rec, filename = "BB2_recolored.png")
+BB7_rast <- rast(
+  nrows = nrow(BB_08_23),
+  ncols = ncol(BB_08_23),
+  xmin = xmin(BB_08_23),
+  xmax = xmax(BB_08_23),
+  ymin = ymin(BB_08_23),
+  ymax = ymax(BB_08_23),
+  crs  = crs(BB_08_23)
+)
 
-for (i in 1:length(lay_BB3))
-    {
-        plotImageArray(lay_BB3[[i]], main = i)
-    }
+BB8_rast <- rast(
+  nrows = nrow(BB_09_24),
+  ncols = ncol(BB_09_24),
+  xmin = xmin(BB_09_24),
+  xmax = xmax(BB_09_24),
+  ymin = ymin(BB_09_24),
+  ymax = ymax(BB_09_24),
+  crs  = crs(BB_09_24)
+)
 
- recolorize_to_png(BB3_rec, filename = "BB3_recolored.png")
+BB9_rast <- rast(
+  nrows = nrow(BB_10_24),
+  ncols = ncol(BB_10_24),
+  xmin = xmin(BB_10_24),
+  xmax = xmax(BB_10_24),
+  ymin = ymin(BB_10_24),
+  ymax = ymax(BB_10_24),
+  crs  = crs(BB_10_24)
+)
 
-for (i in 1:length(lay_BB4))
-    {
-        plotImageArray(lay_BB4[[i]], main = i)
-    }
+# Transposition of the BB0_pa matrix to prevent the raster image from being transposed/mirrored
+values(BB0_rast) <- as.vector(t(BB0_pa))
+plot(BB0_rast, col = viridis (100))
 
- recolorize_to_png(BB4_rec, filename = "BB4_recolored.png")
+values(BB1_rast) <- as.vector(t(BB1_pa))
+plot(BB1_rast, col = viridis (100))
 
-for (i in 1:length(lay_BB5))
-    {
-        plotImageArray(lay_BB5[[i]], main = i)
-    }
+values(BB2_rast) <- as.vector(t(BB2_pa))
+plot(BB2_rast, col = viridis (100))
 
- recolorize_to_png(BB5_rec, filename = "BB5_recolored.png")
+values(BB3_rast) <- as.vector(t(BB3_pa))
+plot(BB3_rast, col = viridis (100))
 
-for (i in 1:length(lay_BB6))
-    {
-        plotImageArray(lay_BB6[[i]], main = i)
-    }
+values(BB4_rast) <- as.vector(t(BB4_pa))
+plot(BB4_rast, col = viridis (100))
 
- recolorize_to_png(BB6_rec, filename = "BB6_recolored.png")
+values(BB5_rast) <- as.vector(t(BB5_pa))
+plot(BB5_rast, col = viridis (100))
 
-for (i in 1:length(lay_BB7))
-    {
-        plotImageArray(lay_BB7[[i]], main = i)
-    }
+values(BB6_rast) <- as.vector(t(BB6_pa))
+plot(BB6_rast, col = viridis (100))
 
- recolorize_to_png(BB7_rec, filename = "BB7_recolored.png")
+values(BB7_rast) <- as.vector(t(BB7_pa))
+plot(BB7_rast, col = viridis (100))
 
-for (i in 1:length(lay_BB8))
-    {
-        plotImageArray(lay_BB8[[i]], main = i)
-    }
+values(BB8_rast) <- as.vector(t(BB8_pa))
+plot(BB8_rast, col = viridis (100))
 
- recolorize_to_png(BB8_rec, filename = "BB8_recolored.png")
+values(BB9_rast) <- as.vector(t(BB9_pa))
+plot(BB9_rast, col = viridis (100))
 
-for (i in 1:length(lay_BB9))
-    {
-        plotImageArray(lay_BB9[[i]], main = i)
-    }
-
- recolorize_to_png(BB9_rec, filename = "BB9_recolored.png")
-
-
-
-###################################################
-## saving single binary layers in .png extension ##
-###################################################
-
-
- for (i in 1:length(lay_BB0)) 
-          {
-              png::writePNG(lay_BB0[[i]], target = paste0("BB0_layer_", i, ".png"))
-          }
-
-
- for (i in 1:length(lay_BB1)) 
-          {
-              png::writePNG(lay_BB1[[i]], target = paste0("BB1_layer_", i, ".png"))
-          }
-
-
- for (i in 1:length(lay_BB2)) 
-          {
-              png::writePNG(lay_BB2[[i]], target = paste0("BB2_layer_", i, ".png"))
-          }
-
-
- for (i in 1:length(lay_BB3)) 
-          {
-              png::writePNG(lay_BB3[[i]], target = paste0("BB3_layer_", i, ".png"))
-          }
-
-
- for (i in 1:length(lay_BB4))
-          {
-              png::writePNG(lay_BB4[[i]], target = paste0("BB4_layer_", i, ".png"))
-          }
-
-
- for (i in 1:length(lay_BB5))
-          {
-              png::writePNG(lay_BB5[[i]], target = paste0("BB5_layer_", i, ".png"))
-          }
-
-
- for (i in 1:length(lay_BB6))
-          {
-              png::writePNG(lay_BB6[[i]], target = paste0("BB6_layer_", i, ".png"))
-          }
-
-
- for (i in 1:length(lay_BB7))
-          {
-              png::writePNG(lay_BB7[[i]], target = paste0("BB7_layer_", i, ".png"))
-          }
-
-
- for (i in 1:length(lay_BB8))
-          {
-              png::writePNG(lay_BB8[[i]], target = paste0("BB8_layer_", i, ".png"))
-          }
+# stack of clusters and ndvi images
+staBB0 <- c(BB0_rast, ndviBBm_20)
+staBB1 <- c(BB1_rast, ndviBBi_20)
+staBB2 <- c(BB2_rast, ndviBBg_21)
+staBB3 <- c(BB3_rast, ndviBBs_21)
+staBB4 <- c(BB4_rast, ndviBBma_22)
+staBB5 <- c(BB5_rast, ndviBBn_22)
+staBB6 <- c(BB6_rast, ndviBBmg_23)
+staBB7 <- c(BB7_rast, ndviBBst_23)
+staBB8 <- c(BB8_rast, ndviBBgn_24)
+staBB9 <- c(BB9_rast, ndviBBse_24)
 
 
- for (i in 1:length(lay_BB9))
-          {
-              png::writePNG(lay_BB9[[i]], target = paste0("BB9_layer_", i, ".png"))
-          }
+names(staBB0) <- c("cluster", "ndvi") # rename classes in cluster and ndvi
+extract_dfBB0 <- as.data.frame(staBB0, na.rm = TRUE) # na.rm remove NA values
+aggregate(ndvi ~ cluster, data = extract_dfBB0, mean) # It is a function that allows me to group pixels by color cluster, calculate the median of the NDVI values in each group, and return a summary dataframe.boxplot(ndvi ~ cluster, data = extract_dfBB0) # mi mostra i bocplot per ogni cluster
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB0) # Kruskal-Wallis test
+# Kruskal-Wallis chi-squared = 920021, df = 4, p-value < 2.2e-16
+
+names(staBB1) <- c("cluster", "ndvi")
+extract_dfBB1 <- as.data.frame(staBB1, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfBB1, mean)
+boxplot(ndvi ~ cluster, data = extract_dfBB1)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB1)
+# Kruskal-Wallis chi-squared = 810823, df = 4, p-value < 2.2e-16
+
+names(staBB2) <- c("cluster", "ndvi")
+extract_dfBB2 <- as.data.frame(staBB2, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfBB2, mean)
+boxplot(ndvi ~ cluster, data = extract_dfBB2)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB2)
+# Kruskal-Wallis chi-squared = 1036569, df = 4, p-value < 2.2e-16
+
+names(staBB3) <- c("cluster", "ndvi")
+extract_dfBB3 <- as.data.frame(staBB3, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfBB3, mean)
+boxplot(ndvi ~ cluster, data = extract_dfBB3)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB3)
+# Kruskal-Wallis chi-squared = 812305, df = 4, p-value < 2.2e-16
+
+names(staBB4) <- c("cluster", "ndvi")
+extract_dfBB4 <- as.data.frame(staBB4, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfBB4, mean)
+boxplot(ndvi ~ cluster, data = extract_dfBB4)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB4)
+# Kruskal-Wallis chi-squared = 921457, df = 4, p-value < 2.2e-16
+
+names(staBB5) <- c("cluster", "ndvi")
+extract_dfBB5 <- as.data.frame(staBB5, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfBB5, mean)
+boxplot(ndvi ~ cluster, data = extract_dfBB5)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB5)
+# Kruskal-Wallis chi-squared = 862763, df = 4, p-value < 2.2e-16
+
+names(staBB6) <- c("cluster", "ndvi")
+extract_dfBB6 <- as.data.frame(staBB6, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfBB6, mean)
+boxplot(ndvi ~ cluster, data = extract_dfBB6)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB6)
+# Kruskal-Wallis chi-squared = 777440, df = 4, p-value < 2.2e-16
+
+names(staBB7) <- c("cluster", "ndvi")
+extract_dfBB7 <- as.data.frame(staBB7, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfBB7, mean)
+boxplot(ndvi ~ cluster, data = extract_dfBB7)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB7)
+# Kruskal-Wallis chi-squared = 682361, df = 4, p-value < 2.2e-16
+
+names(staBB8) <- c("cluster", "ndvi")
+extract_dfBB8 <- as.data.frame(staBB8, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfBB8, mean)
+boxplot(ndvi ~ cluster, data = extract_dfBB8)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB8)
+# Kruskal-Wallis chi-squared = 1046245, df = 4, p-value < 2.2e-16
+
+names(staBB9) <- c("cluster", "ndvi")
+extract_dfBB9 <- as.data.frame(staBB9, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfBB9, mean)
+boxplot(ndvi ~ cluster, data = extract_dfBB9)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB9)
+# Kruskal-Wallis chi-squared = 591318, df = 4, p-value < 2.2e-16
 
 
 ########################################
@@ -1121,173 +1192,244 @@ DO8 <- system.file("extdata/DO_8.png", package = "recolorize")
 DO9 <- system.file("extdata/DO_NA.png", package = "recolorize")
 
 
-# Applying recolorize2(): first step segment color usiing color binning; second step combine existing clusters
-# based on color similarity
-DO0_rec <- recolorize2(DO0, cutoff = 10, plotting = FALSE)
-DO1_rec <- recolorize2(DO1, cutoff = 10, plotting = FALSE)
-DO2_rec <- recolorize2(DO2, cutoff = 10, plotting = FALSE)
-DO3_rec <- recolorize2(DO3, cutoff = 10, plotting = FALSE)
-DO4_rec <- recolorize2(DO4, cutoff = 10, plotting = FALSE)
-DO5_rec <- recolorize2(DO5, cutoff = 10, plotting = FALSE)
-DO6_rec <- recolorize2(DO6, cutoff = 10, plotting = FALSE)
-DO7_rec <- recolorize2(DO7, cutoff = 10, plotting = FALSE)
-DO8_rec <- recolorize2(DO8, cutoff = 10, plotting = FALSE)
-DO9_rec <- recolorize2(DO9, cutoff = 10, plotting = FALSE)
-
-#
-layout(matrix(1:6, nrow = 2, byrow = TRUE))
-par(mar = c(0,0,2,0))
-
-# Splitting color map in single layers and visualising them on a layout formed by 3 cols and 2 rows, each image with
-# a color section
-lay_DO0 <- splitByColor(DO0_rec, plot_method = "overlay") 
-lay_DO1 <- splitByColor(DO1_rec, plot_method = "overlay")
-lay_DO2 <- splitByColor(DO2_rec, plot_method = "overlay")
-lay_DO3 <- splitByColor(DO3_rec, plot_method = "overlay")
-lay_DO4 <- splitByColor(DO4_rec, plot_method = "overlay")
-lay_DO5 <- splitByColor(DO5_rec, plot_method = "overlay")
-lay_DO6 <- splitByColor(DO6_rec, plot_method = "overlay")
-lay_DO7 <- splitByColor(DO7_rec, plot_method = "overlay")
-lay_DO8 <- splitByColor(DO8_rec, plot_method = "overlay")
-lay_DO9 <- splitByColor(DO9_rec, plot_method = "overlay")
-
-### creating png files of every recolored image
-
-for (i in 1:length(lay_DO0))
-    {
-        plotImageArray(lay_DO0[[i]], main = i)
-    }
-
-recolorize_to_png(DO0_rec, filename = "DO0_recolored.png")
-
-for (i in 1:length(lay_DO1))
-    {
-        plotImageArray(lay_DO1[[i]], main = i)
-    }
-
- recolorize_to_png(DO1_rec, filename = "DO1_recolored.png")
-
-for (i in 1:length(lay_DO2))
-    {
-        plotImageArray(lay_DO2[[i]], main = i)
-    }
-
- recolorize_to_png(DO2_rec, filename = "DO2_recolored.png")
-
-for (i in 1:length(lay_DO3))
-    {
-        plotImageArray(lay_DO3[[i]], main = i)
-    }
-
- recolorize_to_png(DO3_rec, filename = "DO3_recolored.png")
-
-for (i in 1:length(lay_DO4))
-    {
-        plotImageArray(lay_DO4[[i]], main = i)
-    }
-
- recolorize_to_png(DO4_rec, filename = "DO4_recolored.png")
-
-for (i in 1:length(lay_DO5))
-    {
-        plotImageArray(lay_DO5[[i]], main = i)
-    }
-
- recolorize_to_png(DO5_rec, filename = "DO5_recolored.png")
-
-for (i in 1:length(lay_DO6))
-    {
-        plotImageArray(lay_DO6[[i]], main = i)
-    }
-
- recolorize_to_png(DO6_rec, filename = "DO6_recolored.png")
-
-for (i in 1:length(lay_DO7))
-    {
-        plotImageArray(lay_DO7[[i]], main = i)
-    }
-
- recolorize_to_png(DO7_rec, filename = "DO7_recolored.png")
-
-for (i in 1:length(lay_DO8))
-    {
-        plotImageArray(lay_DO8[[i]], main = i)
-    }
-
- recolorize_to_png(DO8_rec, filename = "DO8_recolored.png")
-
-for (i in 1:length(lay_DO9))
-    {
-        plotImageArray(lay_DO9[[i]], main = i)
-    }
-
- recolorize_to_png(DO9_rec, filename = "DO9_recolored.png")
+DO0_rec <- recolorize(DO0, method= "kmeans", n = 5)
+DO1_rec <- recolorize(DO1, method= "kmeans", n = 5)
+DO2_rec <- recolorize(DO2, method= "kmeans", n = 5)
+DO3_rec <- recolorize(DO3, method= "kmeans", n = 5)
+DO4_rec <- recolorize(DO4, method= "kmeans", n = 5)
+DO5_rec <- recolorize(DO5, method= "kmeans", n = 5)
+DO6_rec <- recolorize(DO6, method= "kmeans", n = 5)
+DO7_rec <- recolorize(DO7, method= "kmeans", n = 5)
+DO8_rec <- recolorize(DO8, method= "kmeans", n = 5)
+DO9_rec <- recolorize(DO9, method= "kmeans", n = 5)
 
 
-
-###################################################
-## saving single binary layers in .png extension ##
-###################################################
-
-
- for (i in 1:length(lay_DO0)) 
-          {
-              png::writePNG(lay_DO0[[i]], target = paste0("DO0_layer_", i, ".png"))
-          }
-
-
- for (i in 1:length(lay_DO1)) 
-          {
-              png::writePNG(lay_DO1[[i]], target = paste0("DO1_layer_", i, ".png"))
-          }
+DO0_pa <- DO0_rec$pixel_assignments
+DO1_pa <- DO1_rec$pixel_assignments
+DO2_pa <- DO2_rec$pixel_assignments
+DO3_pa <- DO3_rec$pixel_assignments
+DO4_pa <- DO4_rec$pixel_assignments
+DO5_pa <- DO5_rec$pixel_assignments
+DO6_pa <- DO6_rec$pixel_assignments
+DO7_pa <- DO7_rec$pixel_assignments
+DO8_pa <- DO8_rec$pixel_assignments
+DO9_pa <- DO9_rec$pixel_assignments
 
 
- for (i in 1:length(lay_DO2)) 
-          {
-              png::writePNG(lay_DO2[[i]], target = paste0("DO2_layer_", i, ".png"))
-          }
+DO0_rast <- rast(
+  nrows = nrow(DO_01_20),
+  ncols = ncol(DO_01_20),
+  xmin = xmin(DO_01_20),
+  xmax = xmax(DO_01_20),
+  ymin = ymin(DO_01_20),
+  ymax = ymax(DO_01_20),
+  crs  = crs(DO_01_20)
+)
+
+DO1_rast <- rast(
+  nrows = nrow(DO_02_20),
+  ncols = ncol(DO_02_20),
+  xmin = xmin(DO_02_20),
+  xmax = xmax(DO_02_20),
+  ymin = ymin(DO_02_20),
+  ymax = ymax(DO_02_20),
+  crs  = crs(DO_02_20)
+)
+
+DO2_rast <- rast(
+  nrows = nrow(DO_03_21),
+  ncols = ncol(DO_03_21),
+  xmin = xmin(DO_03_21),
+  xmax = xmax(DO_03_21),
+  ymin = ymin(DO_03_21),
+  ymax = ymax(DO_03_21),
+  crs  = crs(DO_03_21)
+)
+
+DO3_rast <- rast(
+  nrows = nrow(DO_04_21),
+  ncols = ncol(DO_04_21),
+  xmin = xmin(DO_04_21),
+  xmax = xmax(DO_04_21),
+  ymin = ymin(DO_04_21),
+  ymax = ymax(DO_04_21),
+  crs  = crs(DO_04_21)
+)
+
+DO4_rast <- rast(
+  nrows = nrow(DO_05_22),
+  ncols = ncol(DO_05_22),
+  xmin = xmin(DO_05_22),
+  xmax = xmax(DO_05_22),
+  ymin = ymin(DO_05_22),
+  ymax = ymax(DO_05_22),
+  crs  = crs(DO_05_22)
+)
+
+DO5_rast <- rast(
+  nrows = nrow(DO_06_22),
+  ncols = ncol(DO_06_22),
+  xmin = xmin(DO_06_22),
+  xmax = xmax(DO_06_22),
+  ymin = ymin(DO_06_22),
+  ymax = ymax(DO_06_22),
+  crs  = crs(DO_06_22)
+)
+
+DO6_rast <- rast(
+  nrows = nrow(DO_07_23),
+  ncols = ncol(DO_07_23),
+  xmin = xmin(DO_07_23),
+  xmax = xmax(DO_07_23),
+  ymin = ymin(DO_07_23),
+  ymax = ymax(DO_07_23),
+  crs  = crs(DO_07_23)
+)
+
+DO7_rast <- rast(
+  nrows = nrow(DO_08_23),
+  ncols = ncol(DO_08_23),
+  xmin = xmin(DO_08_23),
+  xmax = xmax(DO_08_23),
+  ymin = ymin(DO_08_23),
+  ymax = ymax(DO_08_23),
+  crs  = crs(DO_08_23)
+)
+
+DO8_rast <- rast(
+  nrows = nrow(DO_09_24),
+  ncols = ncol(DO_09_24),
+  xmin = xmin(DO_09_24),
+  xmax = xmax(DO_09_24),
+  ymin = ymin(DO_09_24),
+  ymax = ymax(DO_09_24),
+  crs  = crs(DO_09_24)
+)
+
+DO9_rast <- rast(
+  nrows = nrow(DO_10_24),
+  ncols = ncol(DO_10_24),
+  xmin = xmin(DO_10_24),
+  xmax = xmax(DO_10_24),
+  ymin = ymin(DO_10_24),
+  ymax = ymax(DO_10_24),
+  crs  = crs(DO_10_24)
+)
 
 
- for (i in 1:length(lay_DO3)) 
-          {
-              png::writePNG(lay_DO3[[i]], target = paste0("DO3_layer_", i, ".png"))
-          }
+values(DO0_rast) <- as.vector(t(DO0_pa))
+plot(DO0_rast, col = viridis (100))
+
+values(DO1_rast) <- as.vector(t(DO1_pa))
+plot(DO1_rast, col = viridis (100))
+
+values(DO2_rast) <- as.vector(t(DO2_pa))
+plot(DO2_rast, col = viridis (100))
+
+values(DO3_rast) <- as.vector(t(DO3_pa))
+plot(DO3_rast, col = viridis (100))
+
+values(DO4_rast) <- as.vector(t(DO4_pa))
+plot(DO4_rast, col = viridis (100))
+
+values(DO5_rast) <- as.vector(t(DO5_pa))
+plot(DO5_rast, col = viridis (100))
+
+values(DO6_rast) <- as.vector(t(DO6_pa))
+plot(DO6_rast, col = viridis (100))
+
+values(DO7_rast) <- as.vector(t(DO7_pa))
+plot(DO7_rast, col = viridis (100))
+
+values(DO8_rast) <- as.vector(t(DO8_pa))
+plot(DO8_rast, col = viridis (100))
+
+values(DO9_rast) <- as.vector(t(DO9_pa))
+plot(DO9_rast, col = viridis (100))
 
 
- for (i in 1:length(lay_DO4))
-          {
-              png::writePNG(lay_DO4[[i]], target = paste0("DO4_layer_", i, ".png"))
-          }
+staDO0 <- c(DO0_rast, ndviDOa_20)
+staDO1 <- c(DO1_rast, ndviDOp_20)
+staDO2 <- c(DO2_rast, ndviDOa_21)
+staDO3 <- c(DO3_rast, ndviDOp_21)
+staDO4 <- c(DO4_rast, ndviDOa_22)
+staDO5 <- c(DO5_rast, ndviDOp_22)
+staDO6 <- c(DO6_rast, ndviDOa_23)
+staDO7 <- c(DO7_rast, ndviDOp_23)
+staDO8 <- c(DO8_rast, ndviDOa_24)
+staDO9 <- c(DO9_rast, ndviDOp_24)
 
 
- for (i in 1:length(lay_DO5))
-          {
-              png::writePNG(lay_DO5[[i]], target = paste0("DO5_layer_", i, ".png"))
-          }
+names(staDO0) <- c("cluster", "ndvi")
+extract_dfDO0 <- as.data.frame(staDO0, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfDO0, median)
+boxplot(ndvi ~ cluster, data = extract_dfDO0)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO0)
+# Kruskal-Wallis chi-squared = 744100, df = 4, p-value < 2.2e-16
 
+names(staDO1) <- c("cluster", "ndvi")
+extract_dfDO1 <- as.data.frame(staDO1, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfDO1, mean)
+boxplot(ndvi ~ cluster, data = extract_dfDO1)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO1)
+# Kruskal-Wallis chi-squared = 285573, df = 4, p-value < 2.2e-16
 
- for (i in 1:length(lay_DO6))
-          {
-              png::writePNG(lay_DO6[[i]], target = paste0("DO6_layer_", i, ".png"))
-          }
+names(staDO2) <- c("cluster", "ndvi")
+extract_dfDO2 <- as.data.frame(staDO2, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfDO2, mean)
+boxplot(ndvi ~ cluster, data = extract_dfDO2)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO2)
+# Kruskal-Wallis chi-squared = 652904, df = 4, p-value < 2.2e-16
 
+names(staDO3) <- c("cluster", "ndvi")
+extract_dfDO3 <- as.data.frame(staDO3, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfDO3, mean)
+boxplot(ndvi ~ cluster, data = extract_dfDO3)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO3)
+# Kruskal-Wallis chi-squared = 337481, df = 4, p-value < 2.2e-16
 
- for (i in 1:length(lay_DO7))
-          {
-              png::writePNG(lay_DO7[[i]], target = paste0("DO7_layer_", i, ".png"))
-          }
+names(staDO4) <- c("cluster", "ndvi")
+extract_dfDO4 <- as.data.frame(staDO4, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfDO4, mean)
+boxplot(ndvi ~ cluster, data = extract_dfDO4)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO4)
+# Kruskal-Wallis chi-squared = 614636, df = 4, p-value < 2.2e-16
 
+names(staDO5) <- c("cluster", "ndvi")
+extract_dfDO5 <- as.data.frame(staDO5, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfDO5, mean)
+boxplot(ndvi ~ cluster, data = extract_dfDO5)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO5)
+# Kruskal-Wallis chi-squared = 600265, df = 4, p-value < 2.2e-16
 
- for (i in 1:length(lay_DO8))
-          {
-              png::writePNG(lay_DO8[[i]], target = paste0("DO8_layer_", i, ".png"))
-          }
+names(staDO6) <- c("cluster", "ndvi")
+extract_dfDO6 <- as.data.frame(staDO6, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfDO6, mean)
+boxplot(ndvi ~ cluster, data = extract_dfDO6)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO6)
+# Kruskal-Wallis chi-squared = 653044, df = 4, p-value < 2.2e-16
 
+names(staDO7) <- c("cluster", "ndvi")
+extract_dfDO7 <- as.data.frame(staDO7, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfDO7, mean)
+boxplot(ndvi ~ cluster, data = extract_dfDO7)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO7)
+# Kruskal-Wallis chi-squared = 299580, df = 4, p-value < 2.2e-16
 
- for (i in 1:length(lay_DO9))
-          {
-              png::writePNG(lay_DO9[[i]], target = paste0("DO9_layer_", i, ".png"))
-          }
+names(staDO8) <- c("cluster", "ndvi")
+extract_dfDO8 <- as.data.frame(staDO8, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfDO8, mean)
+boxplot(ndvi ~ cluster, data = extract_dfDO8)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO8)
+# Kruskal-Wallis chi-squared = 671521, df = 4, p-value < 2.2e-16
+
+names(staDO9) <- c("cluster", "ndvi")
+extract_dfDO9 <- as.data.frame(staDO9, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfDO9, mean)
+boxplot(ndvi ~ cluster, data = extract_dfDO9)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO9)
+# Kruskal-Wallis chi-squared = 514925, df = 4, p-value < 2.2e-16
+
 
 #####################################################
 ###### USING RECOLORIZE ON FORESTE CASENTINESI ######
@@ -1307,171 +1449,241 @@ FC8 <- system.file("extdata/FC_8.png", package = "recolorize")
 FC9 <- system.file("extdata/FC_NA.png", package = "recolorize")
 
 
-# Applying recolorize2(): first step segment color usiing color binning; second step combine existing clusters
-# based on color similarity
-FC0_rec <- recolorize2(FC0, cutoff = 10, plotting = FALSE)
-FC1_rec <- recolorize2(FC1, cutoff = 10, plotting = FALSE)
-FC2_rec <- recolorize2(FC2, cutoff = 10, plotting = FALSE)
-FC3_rec <- recolorize2(FC3, cutoff = 10, plotting = FALSE)
-FC4_rec <- recolorize2(FC4, cutoff = 10, plotting = FALSE)
-FC5_rec <- recolorize2(FC5, cutoff = 10, plotting = FALSE)
-FC6_rec <- recolorize2(FC6, cutoff = 10, plotting = FALSE)
-FC7_rec <- recolorize2(FC7, cutoff = 10, plotting = FALSE)
-FC8_rec <- recolorize2(FC8, cutoff = 10, plotting = FALSE)
-FC9_rec <- recolorize2(FC9, cutoff = 10, plotting = FALSE)
-
-#
-layout(matrix(1:6, nrow = 2, byrow = TRUE))
-par(mar = c(0,0,2,0))
-
-# Splitting color map in single layers and visualising them on a layout formed by 3 cols and 2 rows, each image with
-# a color section
-lay_FC0 <- splitByColor(FC0_rec, plot_method = "overlay") 
-lay_FC1 <- splitByColor(FC1_rec, plot_method = "overlay")
-lay_FC2 <- splitByColor(FC2_rec, plot_method = "overlay")
-lay_FC3 <- splitByColor(FC3_rec, plot_method = "overlay")
-lay_FC4 <- splitByColor(FC4_rec, plot_method = "overlay")
-lay_FC5 <- splitByColor(FC5_rec, plot_method = "overlay")
-lay_FC6 <- splitByColor(FC6_rec, plot_method = "overlay")
-lay_FC7 <- splitByColor(FC7_rec, plot_method = "overlay")
-lay_FC8 <- splitByColor(FC8_rec, plot_method = "overlay")
-lay_FC9 <- splitByColor(FC9_rec, plot_method = "overlay")
-
-### creating png files of every recolored image
-
-for (i in 1:length(lay_FC0))
-    {
-        plotImageArray(lay_FC0[[i]], main = i)
-    }
-
-recolorize_to_png(FC0_rec, filename = "FC0_recolored.png")
-
-for (i in 1:length(lay_FC1))
-    {
-        plotImageArray(lay_FC1[[i]], main = i)
-    }
-
- recolorize_to_png(FC1_rec, filename = "FC1_recolored.png")
-
-for (i in 1:length(lay_FC2))
-    {
-        plotImageArray(lay_FC2[[i]], main = i)
-    }
-
- recolorize_to_png(FC2_rec, filename = "FC2_recolored.png")
-
-for (i in 1:length(lay_FC3))
-    {
-        plotImageArray(lay_FC3[[i]], main = i)
-    }
-
- recolorize_to_png(FC3_rec, filename = "FC3_recolored.png")
-
-for (i in 1:length(lay_FC4))
-    {
-        plotImageArray(lay_FC4[[i]], main = i)
-    }
-
- recolorize_to_png(FC4_rec, filename = "FC4_recolored.png")
-
-for (i in 1:length(lay_FC5))
-    {
-        plotImageArray(lay_FC5[[i]], main = i)
-    }
-
- recolorize_to_png(FC5_rec, filename = "FC5_recolored.png")
-
-for (i in 1:length(lay_FC6))
-    {
-        plotImageArray(lay_FC6[[i]], main = i)
-    }
-
- recolorize_to_png(FC6_rec, filename = "FC6_recolored.png")
-
-for (i in 1:length(lay_FC7))
-    {
-        plotImageArray(lay_FC7[[i]], main = i)
-    }
-
- recolorize_to_png(FC7_rec, filename = "FC7_recolored.png")
-
-for (i in 1:length(lay_FC8))
-    {
-        plotImageArray(lay_FC8[[i]], main = i)
-    }
-
- recolorize_to_png(FC8_rec, filename = "FC8_recolored.png")
-
-for (i in 1:length(lay_FC9))
-    {
-        plotImageArray(lay_FC9[[i]], main = i)
-    }
-
- recolorize_to_png(FC9_rec, filename = "FC9_recolored.png")
+FC0_rec <- recolorize(FC0, method= "kmeans", n = 5)
+FC1_rec <- recolorize(FC1, method= "kmeans", n = 5)
+FC2_rec <- recolorize(FC2, method= "kmeans", n = 5)
+FC3_rec <- recolorize(FC3, method= "kmeans", n = 5)
+FC4_rec <- recolorize(FC4, method= "kmeans", n = 5)
+FC5_rec <- recolorize(FC5, method= "kmeans", n = 5)
+FC6_rec <- recolorize(FC6, method= "kmeans", n = 5)
+FC7_rec <- recolorize(FC7, method= "kmeans", n = 5)
+FC8_rec <- recolorize(FC8, method= "kmeans", n = 5)
+FC9_rec <- recolorize(FC9, method= "kmeans", n = 5)
 
 
-
-###################################################
-## saving single binary layers in .png extension ##
-###################################################
-
-
- for (i in 1:length(lay_FC0)) 
-          {
-              png::writePNG(lay_FC0[[i]], target = paste0("FC0_layer_", i, ".png"))
-          }
-
-
- for (i in 1:length(lay_FC1)) 
-          {
-              png::writePNG(lay_FC1[[i]], target = paste0("FC1_layer_", i, ".png"))
-          }
+FC0_pa <- FC0_rec$pixel_assignments
+FC1_pa <- FC1_rec$pixel_assignments
+FC2_pa <- FC2_rec$pixel_assignments
+FC3_pa <- FC3_rec$pixel_assignments
+FC4_pa <- FC4_rec$pixel_assignments
+FC5_pa <- FC5_rec$pixel_assignments
+FC6_pa <- FC6_rec$pixel_assignments
+FC7_pa <- FC7_rec$pixel_assignments
+FC8_pa <- FC8_rec$pixel_assignments
+FC9_pa <- FC9_rec$pixel_assignments
 
 
- for (i in 1:length(lay_FC2)) 
-          {
-              png::writePNG(lay_FC2[[i]], target = paste0("FC2_layer_", i, ".png"))
-          }
+FC0_rast <- rast(
+  nrows = nrow(FC_01_20),
+  ncols = ncol(FC_01_20),
+  xmin = xmin(FC_01_20),
+  xmax = xmax(FC_01_20),
+  ymin = ymin(FC_01_20),
+  ymax = ymax(FC_01_20),
+  crs  = crs(FC_01_20)
+)
+
+FC1_rast <- rast(
+  nrows = nrow(FC_02_20),
+  ncols = ncol(FC_02_20),
+  xmin = xmin(FC_02_20),
+  xmax = xmax(FC_02_20),
+  ymin = ymin(FC_02_20),
+  ymax = ymax(FC_02_20),
+  crs  = crs(FC_02_20)
+)
+
+FC2_rast <- rast(
+  nrows = nrow(FC_03_21),
+  ncols = ncol(FC_03_21),
+  xmin = xmin(FC_03_21),
+  xmax = xmax(FC_03_21),
+  ymin = ymin(FC_03_21),
+  ymax = ymax(FC_03_21),
+  crs  = crs(FC_03_21)
+)
+
+FC3_rast <- rast(
+  nrows = nrow(FC_04_21),
+  ncols = ncol(FC_04_21),
+  xmin = xmin(FC_04_21),
+  xmax = xmax(FC_04_21),
+  ymin = ymin(FC_04_21),
+  ymax = ymax(FC_04_21),
+  crs  = crs(FC_04_21)
+)
+
+FC4_rast <- rast(
+  nrows = nrow(FC_05_22),
+  ncols = ncol(FC_05_22),
+  xmin = xmin(FC_05_22),
+  xmax = xmax(FC_05_22),
+  ymin = ymin(FC_05_22),
+  ymax = ymax(FC_05_22),
+  crs  = crs(FC_05_22)
+)
+
+FC5_rast <- rast(
+  nrows = nrow(FC_06_22),
+  ncols = ncol(FC_06_22),
+  xmin = xmin(FC_06_22),
+  xmax = xmax(FC_06_22),
+  ymin = ymin(FC_06_22),
+  ymax = ymax(FC_06_22),
+  crs  = crs(FC_06_22)
+)
+
+FC6_rast <- rast(
+  nrows = nrow(FC_07_23),
+  ncols = ncol(FC_07_23),
+  xmin = xmin(FC_07_23),
+  xmax = xmax(FC_07_23),
+  ymin = ymin(FC_07_23),
+  ymax = ymax(FC_07_23),
+  crs  = crs(FC_07_23)
+)
+
+FC7_rast <- rast(
+  nrows = nrow(FC_08_23),
+  ncols = ncol(FC_08_23),
+  xmin = xmin(FC_08_23),
+  xmax = xmax(FC_08_23),
+  ymin = ymin(FC_08_23),
+  ymax = ymax(FC_08_23),
+  crs  = crs(FC_08_23)
+)
+
+FC8_rast <- rast(
+  nrows = nrow(FC_09_24),
+  ncols = ncol(FC_09_24),
+  xmin = xmin(FC_09_24),
+  xmax = xmax(FC_09_24),
+  ymin = ymin(FC_09_24),
+  ymax = ymax(FC_09_24),
+  crs  = crs(FC_09_24)
+)
+
+FC9_rast <- rast(
+  nrows = nrow(FC_10_24),
+  ncols = ncol(FC_10_24),
+  xmin = xmin(FC_10_24),
+  xmax = xmax(FC_10_24),
+  ymin = ymin(FC_10_24),
+  ymax = ymax(FC_10_24),
+  crs  = crs(FC_10_24)
+)
 
 
- for (i in 1:length(lay_FC3)) 
-          {
-              png::writePNG(lay_FC3[[i]], target = paste0("FC3_layer_", i, ".png"))
-          }
+values(FC0_rast) <- as.vector(t(FC0_pa))
+plot(FC0_rast, col = viridis (100))
+
+values(FC1_rast) <- as.vector(t(FC1_pa))
+plot(FC1_rast, col = viridis (100))
+
+values(FC2_rast) <- as.vector(t(FC2_pa))
+plot(FC2_rast, col = viridis (100))
+
+values(FC3_rast) <- as.vector(t(FC3_pa))
+plot(FC3_rast, col = viridis (100))
+
+values(FC4_rast) <- as.vector(t(FC4_pa))
+plot(FC4_rast, col = viridis (100))
+
+values(FC5_rast) <- as.vector(t(FC5_pa))
+plot(FC5_rast, col = viridis (100))
+
+values(FC6_rast) <- as.vector(t(FC6_pa))
+plot(FC6_rast, col = viridis (100))
+
+values(FC7_rast) <- as.vector(t(FC7_pa))
+plot(FC7_rast, col = viridis (100))
+
+values(FC8_rast) <- as.vector(t(FC8_pa))
+plot(FC8_rast, col = viridis (100))
+
+values(FC9_rast) <- as.vector(t(FC9_pa))
+plot(FC9_rast, col = viridis (100))
+
+# stack dei cluster e NDVI
+staFC0 <- c(FC0_rast, ndviFCm_20)
+staFC1 <- c(FC1_rast, ndviFCs_20)
+staFC2 <- c(FC2_rast, ndviFCm_21)
+staFC3 <- c(FC3_rast, ndviFCag_21)
+staFC4 <- c(FC4_rast, ndviFCm_22)
+staFC5 <- c(FC5_rast, ndviFCag_22)
+staFC6 <- c(FC6_rast, ndviFCg_23)
+staFC7 <- c(FC7_rast, ndviFCn_23)
+staFC8 <- c(FC8_rast, ndviFCa_24)
+staFC9 <- c(FC9_rast, ndviFCl_24)
 
 
- for (i in 1:length(lay_FC4))
-          {
-              png::writePNG(lay_FC4[[i]], target = paste0("FC4_layer_", i, ".png"))
-          }
+names(staFC0) <- c("cluster", "ndvi")
+extract_dfFC0 <- as.data.frame(staFC0, na.rm = TRUE) 
+aggregate(ndvi ~ cluster, data = extract_dfFC0, median) 
+boxplot(ndvi ~ cluster, data = extract_dfFC0)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC0)
+# Kruskal-Wallis chi-squared = 449361, df = 4, p-value < 2.2e-16
 
+names(staFC1) <- c("cluster", "ndvi")
+extract_dfFC1 <- as.data.frame(staFC1, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfFC1, mean)
+boxplot(ndvi ~ cluster, data = extract_dfFC1)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC1)
+# Kruskal-Wallis chi-squared = 789942, df = 4, p-value < 2.2e-16
 
- for (i in 1:length(lay_FC5))
-          {
-              png::writePNG(lay_FC5[[i]], target = paste0("FC5_layer_", i, ".png"))
-          }
+names(staFC2) <- c("cluster", "ndvi")
+extract_dfFC2 <- as.data.frame(staFC2, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfFC2, mean)
+boxplot(ndvi ~ cluster, data = extract_dfFC2)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC2)
+# Kruskal-Wallis chi-squared = 483105, df = 4, p-value < 2.2e-16
 
+names(staFC3) <- c("cluster", "ndvi")
+extract_dfFC3 <- as.data.frame(staFC3, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfFC3, mean)
+boxplot(ndvi ~ cluster, data = extract_dfFC3)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC3)
+# Kruskal-Wallis chi-squared = 799859, df = 4, p-value < 2.2e-16
 
- for (i in 1:length(lay_FC6))
-          {
-              png::writePNG(lay_FC6[[i]], target = paste0("FC6_layer_", i, ".png"))
-          }
+names(staFC4) <- c("cluster", "ndvi")
+extract_dfFC4 <- as.data.frame(staFC4, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfFC4, mean)
+boxplot(ndvi ~ cluster, data = extract_dfFC4)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC4)
+# Kruskal-Wallis chi-squared = 507031, df = 4, p-value < 2.2e-16
 
+names(staFC5) <- c("cluster", "ndvi")
+extract_dfFC5 <- as.data.frame(staFC5, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfFC5, mean)
+boxplot(ndvi ~ cluster, data = extract_dfFC5)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC5)
+# Kruskal-Wallis chi-squared = 854294, df = 4, p-value < 2.2e-16
 
- for (i in 1:length(lay_FC7))
-          {
-              png::writePNG(lay_FC7[[i]], target = paste0("FC7_layer_", i, ".png"))
-          }
+names(staFC6) <- c("cluster", "ndvi")
+extract_dfFC6 <- as.data.frame(staFC6, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfFC6, mean)
+boxplot(ndvi ~ cluster, data = extract_dfFC6)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC6)
+# Kruskal-Wallis chi-squared = 643593, df = 4, p-value < 2.2e-16
 
+names(staFC7) <- c("cluster", "ndvi")
+extract_dfFC7 <- as.data.frame(staFC7, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfFC7, mean)
+boxplot(ndvi ~ cluster, data = extract_dfFC7)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC7)
+# Kruskal-Wallis chi-squared = 701470, df = 4, p-value < 2.2e-16
 
- for (i in 1:length(lay_FC8))
-          {
-              png::writePNG(lay_FC8[[i]], target = paste0("FC8_layer_", i, ".png"))
-          }
+names(staFC8) <- c("cluster", "ndvi")
+extract_dfFC8 <- as.data.frame(staFC8, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfFC8, mean)
+boxplot(ndvi ~ cluster, data = extract_dfFC8)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC8)
+# Kruskal-Wallis chi-squared = 15594, df = 4, p-value < 2.2e-16
 
-
- for (i in 1:length(lay_FC9))
-          {
-              png::writePNG(lay_FC9[[i]], target = paste0("FC9_layer_", i, ".png"))
-          }
+names(staFC9) <- c("cluster", "ndvi")
+extract_dfFC9 <- as.data.frame(staFC9, na.rm = TRUE)
+aggregate(ndvi ~ cluster, data = extract_dfFC9, mean)
+boxplot(ndvi ~ cluster, data = extract_dfFC9)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC9)
+# Kruskal-Wallis chi-squared = 120086, df = 4, p-value < 2.2e-16
 
