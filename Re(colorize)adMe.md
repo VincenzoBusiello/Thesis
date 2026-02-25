@@ -53,12 +53,12 @@ DO0_rec <- recolorize(DO0, method= "kmeans", n = 5)
 
 Below is a small portion of the code used to calculate the Kruskal-Wallis test to see if the color segmentation clusters have different NDVI value distributions.
 ```R
-names(staFC0) <- c("cluster", "ndvi")
-extract_dfFC0 <- as.data.frame(staFC0, na.rm = TRUE) 
-aggregate(ndvi ~ cluster, data = extract_dfFC0, median) 
-boxplot(ndvi ~ cluster, data = extract_dfFC0)
-kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC0)
-# Kruskal-Wallis chi-squared = 449361, df = 4, p-value < 2.2e-16
+names(staDO0) <- c("cluster", "ndvi")
+extract_dfDP0 <- as.data.frame(staDO0, na.rm = TRUE) 
+aggregate(ndvi ~ cluster, data = extract_dfDO0, mean) 
+boxplot(ndvi ~ cluster, data = extract_dfDO0)
+kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO0)
+# Kruskal-Wallis chi-squared = 744100, df = 4, p-value < 2.2e-16
 ```
 Here is the graph showing the assignment of clusters according to NDVI values. You can see how the values contained in cluster 1 are those associated with vegetation with the highest NDVI level and therefore the highest level of well-being. You can also see how the values contained within cluster 5 are associated with stressed vegetation, with NDVI values between 0.3 and 0.5.
 
