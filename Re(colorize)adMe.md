@@ -44,7 +44,7 @@ plot(ndviBBm_20, col=mako(10))
 <img src="https://github.com/VincenzoBusiello/Thesis/blob/main/NDVIBB0.png?raw=true" width = "250px">
 ***
 
-Here the creation of color segmentation with recolorize() function:
+Here the creation of color segmentation with recolorize() function (The assignment of colors to cluster numbers is random, so the order changes each time the code is run):
 ```R
 DO0 <- system.file("extdata/DO_0.png", package = "recolorize")
 DO0_rec <- recolorize(DO0, method= "kmeans", n = 5)
