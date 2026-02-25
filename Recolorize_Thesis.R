@@ -1107,6 +1107,7 @@ staBB9 <- c(BB9_rast, ndviBBse_24)
 names(staBB0) <- c("cluster", "ndvi") # rename classes in cluster and ndvi
 extract_dfBB0 <- as.data.frame(staBB0, na.rm = TRUE) # na.rm remove NA values
 aggregate(ndvi ~ cluster, data = extract_dfBB0, mean) # It is a function that allows me to group pixels by color cluster, calculate the median of the NDVI values in each group, and return a summary dataframe.boxplot(ndvi ~ cluster, data = extract_dfBB0) # mi mostra i bocplot per ogni cluster
+boxplot(ndvi ~ cluster, data = extract_dfBB0)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB0) # Kruskal-Wallis test
 # Kruskal-Wallis chi-squared = 920021, df = 4, p-value < 2.2e-16
 
