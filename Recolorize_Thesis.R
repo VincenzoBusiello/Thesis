@@ -1106,70 +1106,70 @@ staBB9 <- c(BB9_rast, ndviBBse_24)
 
 names(staBB0) <- c("cluster", "ndvi") # rename classes in cluster and ndvi
 extract_dfBB0 <- as.data.frame(staBB0, na.rm = TRUE) # na.rm remove NA values
-aggregate(ndvi ~ cluster, data = extract_dfBB0, mean) # It is a function that allows me to group pixels by color cluster, calculate the median of the NDVI values in each group, and return a summary dataframe.boxplot(ndvi ~ cluster, data = extract_dfBB0) # mi mostra i bocplot per ogni cluster
+aggregate(ndvi ~ cluster, data = extract_dfBB0, median) # It is a function that allows me to group pixels by color cluster, calculate the median of the NDVI values in each group, and return a summary dataframe.boxplot(ndvi ~ cluster, data = extract_dfBB0) # mi mostra i bocplot per ogni cluster
 boxplot(ndvi ~ cluster, data = extract_dfBB0)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB0) # Kruskal-Wallis test
 # Kruskal-Wallis chi-squared = 920021, df = 4, p-value < 2.2e-16
 
 names(staBB1) <- c("cluster", "ndvi")
 extract_dfBB1 <- as.data.frame(staBB1, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfBB1, mean)
+aggregate(ndvi ~ cluster, data = extract_dfBB1, median)
 boxplot(ndvi ~ cluster, data = extract_dfBB1)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB1)
 # Kruskal-Wallis chi-squared = 810823, df = 4, p-value < 2.2e-16
 
 names(staBB2) <- c("cluster", "ndvi")
 extract_dfBB2 <- as.data.frame(staBB2, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfBB2, mean)
+aggregate(ndvi ~ cluster, data = extract_dfBB2, median)
 boxplot(ndvi ~ cluster, data = extract_dfBB2)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB2)
 # Kruskal-Wallis chi-squared = 1036569, df = 4, p-value < 2.2e-16
 
 names(staBB3) <- c("cluster", "ndvi")
 extract_dfBB3 <- as.data.frame(staBB3, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfBB3, mean)
+aggregate(ndvi ~ cluster, data = extract_dfBB3, median)
 boxplot(ndvi ~ cluster, data = extract_dfBB3)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB3)
 # Kruskal-Wallis chi-squared = 812305, df = 4, p-value < 2.2e-16
 
 names(staBB4) <- c("cluster", "ndvi")
 extract_dfBB4 <- as.data.frame(staBB4, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfBB4, mean)
+aggregate(ndvi ~ cluster, data = extract_dfBB4, median)
 boxplot(ndvi ~ cluster, data = extract_dfBB4)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB4)
 # Kruskal-Wallis chi-squared = 921457, df = 4, p-value < 2.2e-16
 
 names(staBB5) <- c("cluster", "ndvi")
 extract_dfBB5 <- as.data.frame(staBB5, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfBB5, mean)
+aggregate(ndvi ~ cluster, data = extract_dfBB5, median)
 boxplot(ndvi ~ cluster, data = extract_dfBB5)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB5)
 # Kruskal-Wallis chi-squared = 862763, df = 4, p-value < 2.2e-16
 
 names(staBB6) <- c("cluster", "ndvi")
 extract_dfBB6 <- as.data.frame(staBB6, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfBB6, mean)
+aggregate(ndvi ~ cluster, data = extract_dfBB6, median)
 boxplot(ndvi ~ cluster, data = extract_dfBB6)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB6)
 # Kruskal-Wallis chi-squared = 777440, df = 4, p-value < 2.2e-16
 
 names(staBB7) <- c("cluster", "ndvi")
 extract_dfBB7 <- as.data.frame(staBB7, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfBB7, mean)
+aggregate(ndvi ~ cluster, data = extract_dfBB7, median)
 boxplot(ndvi ~ cluster, data = extract_dfBB7)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB7)
 # Kruskal-Wallis chi-squared = 682361, df = 4, p-value < 2.2e-16
 
 names(staBB8) <- c("cluster", "ndvi")
 extract_dfBB8 <- as.data.frame(staBB8, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfBB8, mean)
+aggregate(ndvi ~ cluster, data = extract_dfBB8, median)
 boxplot(ndvi ~ cluster, data = extract_dfBB8)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB8)
 # Kruskal-Wallis chi-squared = 1046245, df = 4, p-value < 2.2e-16
 
 names(staBB9) <- c("cluster", "ndvi")
 extract_dfBB9 <- as.data.frame(staBB9, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfBB9, mean)
+aggregate(ndvi ~ cluster, data = extract_dfBB9, median)
 boxplot(ndvi ~ cluster, data = extract_dfBB9)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB9)
 # Kruskal-Wallis chi-squared = 591318, df = 4, p-value < 2.2e-16
@@ -1370,63 +1370,63 @@ kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO0)
 
 names(staDO1) <- c("cluster", "ndvi")
 extract_dfDO1 <- as.data.frame(staDO1, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfDO1, mean)
+aggregate(ndvi ~ cluster, data = extract_dfDO1, median)
 boxplot(ndvi ~ cluster, data = extract_dfDO1)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO1)
 # Kruskal-Wallis chi-squared = 285573, df = 4, p-value < 2.2e-16
 
 names(staDO2) <- c("cluster", "ndvi")
 extract_dfDO2 <- as.data.frame(staDO2, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfDO2, mean)
+aggregate(ndvi ~ cluster, data = extract_dfDO2, median)
 boxplot(ndvi ~ cluster, data = extract_dfDO2)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO2)
 # Kruskal-Wallis chi-squared = 652904, df = 4, p-value < 2.2e-16
 
 names(staDO3) <- c("cluster", "ndvi")
 extract_dfDO3 <- as.data.frame(staDO3, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfDO3, mean)
+aggregate(ndvi ~ cluster, data = extract_dfDO3, median)
 boxplot(ndvi ~ cluster, data = extract_dfDO3)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO3)
 # Kruskal-Wallis chi-squared = 337481, df = 4, p-value < 2.2e-16
 
 names(staDO4) <- c("cluster", "ndvi")
 extract_dfDO4 <- as.data.frame(staDO4, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfDO4, mean)
+aggregate(ndvi ~ cluster, data = extract_dfDO4, median)
 boxplot(ndvi ~ cluster, data = extract_dfDO4)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO4)
 # Kruskal-Wallis chi-squared = 614636, df = 4, p-value < 2.2e-16
 
 names(staDO5) <- c("cluster", "ndvi")
 extract_dfDO5 <- as.data.frame(staDO5, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfDO5, mean)
+aggregate(ndvi ~ cluster, data = extract_dfDO5, median)
 boxplot(ndvi ~ cluster, data = extract_dfDO5)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO5)
 # Kruskal-Wallis chi-squared = 600265, df = 4, p-value < 2.2e-16
 
 names(staDO6) <- c("cluster", "ndvi")
 extract_dfDO6 <- as.data.frame(staDO6, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfDO6, mean)
+aggregate(ndvi ~ cluster, data = extract_dfDO6, median)
 boxplot(ndvi ~ cluster, data = extract_dfDO6)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO6)
 # Kruskal-Wallis chi-squared = 653044, df = 4, p-value < 2.2e-16
 
 names(staDO7) <- c("cluster", "ndvi")
 extract_dfDO7 <- as.data.frame(staDO7, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfDO7, mean)
+aggregate(ndvi ~ cluster, data = extract_dfDO7, median)
 boxplot(ndvi ~ cluster, data = extract_dfDO7)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO7)
 # Kruskal-Wallis chi-squared = 299580, df = 4, p-value < 2.2e-16
 
 names(staDO8) <- c("cluster", "ndvi")
 extract_dfDO8 <- as.data.frame(staDO8, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfDO8, mean)
+aggregate(ndvi ~ cluster, data = extract_dfDO8, median)
 boxplot(ndvi ~ cluster, data = extract_dfDO8)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO8)
 # Kruskal-Wallis chi-squared = 671521, df = 4, p-value < 2.2e-16
 
 names(staDO9) <- c("cluster", "ndvi")
 extract_dfDO9 <- as.data.frame(staDO9, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfDO9, mean)
+aggregate(ndvi ~ cluster, data = extract_dfDO9, median)
 boxplot(ndvi ~ cluster, data = extract_dfDO9)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO9)
 # Kruskal-Wallis chi-squared = 514925, df = 4, p-value < 2.2e-16
@@ -1627,63 +1627,63 @@ kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC0)
 
 names(staFC1) <- c("cluster", "ndvi")
 extract_dfFC1 <- as.data.frame(staFC1, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfFC1, mean)
+aggregate(ndvi ~ cluster, data = extract_dfFC1, median)
 boxplot(ndvi ~ cluster, data = extract_dfFC1)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC1)
 # Kruskal-Wallis chi-squared = 789942, df = 4, p-value < 2.2e-16
 
 names(staFC2) <- c("cluster", "ndvi")
 extract_dfFC2 <- as.data.frame(staFC2, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfFC2, mean)
+aggregate(ndvi ~ cluster, data = extract_dfFC2, median)
 boxplot(ndvi ~ cluster, data = extract_dfFC2)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC2)
 # Kruskal-Wallis chi-squared = 483105, df = 4, p-value < 2.2e-16
 
 names(staFC3) <- c("cluster", "ndvi")
 extract_dfFC3 <- as.data.frame(staFC3, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfFC3, mean)
+aggregate(ndvi ~ cluster, data = extract_dfFC3, median)
 boxplot(ndvi ~ cluster, data = extract_dfFC3)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC3)
 # Kruskal-Wallis chi-squared = 799859, df = 4, p-value < 2.2e-16
 
 names(staFC4) <- c("cluster", "ndvi")
 extract_dfFC4 <- as.data.frame(staFC4, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfFC4, mean)
+aggregate(ndvi ~ cluster, data = extract_dfFC4, median)
 boxplot(ndvi ~ cluster, data = extract_dfFC4)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC4)
 # Kruskal-Wallis chi-squared = 507031, df = 4, p-value < 2.2e-16
 
 names(staFC5) <- c("cluster", "ndvi")
 extract_dfFC5 <- as.data.frame(staFC5, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfFC5, mean)
+aggregate(ndvi ~ cluster, data = extract_dfFC5, median)
 boxplot(ndvi ~ cluster, data = extract_dfFC5)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC5)
 # Kruskal-Wallis chi-squared = 854294, df = 4, p-value < 2.2e-16
 
 names(staFC6) <- c("cluster", "ndvi")
 extract_dfFC6 <- as.data.frame(staFC6, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfFC6, mean)
+aggregate(ndvi ~ cluster, data = extract_dfFC6, median)
 boxplot(ndvi ~ cluster, data = extract_dfFC6)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC6)
 # Kruskal-Wallis chi-squared = 643593, df = 4, p-value < 2.2e-16
 
 names(staFC7) <- c("cluster", "ndvi")
 extract_dfFC7 <- as.data.frame(staFC7, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfFC7, mean)
+aggregate(ndvi ~ cluster, data = extract_dfFC7, median)
 boxplot(ndvi ~ cluster, data = extract_dfFC7)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC7)
 # Kruskal-Wallis chi-squared = 701470, df = 4, p-value < 2.2e-16
 
 names(staFC8) <- c("cluster", "ndvi")
 extract_dfFC8 <- as.data.frame(staFC8, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfFC8, mean)
+aggregate(ndvi ~ cluster, data = extract_dfFC8, median)
 boxplot(ndvi ~ cluster, data = extract_dfFC8)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC8)
 # Kruskal-Wallis chi-squared = 15594, df = 4, p-value < 2.2e-16
 
 names(staFC9) <- c("cluster", "ndvi")
 extract_dfFC9 <- as.data.frame(staFC9, na.rm = TRUE)
-aggregate(ndvi ~ cluster, data = extract_dfFC9, mean)
+aggregate(ndvi ~ cluster, data = extract_dfFC9, median)
 boxplot(ndvi ~ cluster, data = extract_dfFC9)
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC9)
 # Kruskal-Wallis chi-squared = 120086, df = 4, p-value < 2.2e-16
