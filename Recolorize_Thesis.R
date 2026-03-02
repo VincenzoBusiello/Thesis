@@ -4,6 +4,7 @@ library(ggplot2)# for graphs
 library(viridis) # alternative color palettes 
 library(patchwork) # for multiple graphs on a single plot
 library(recolorize) # color segmentation and color clustering
+library(dunn.test) # post-hoc analysis
 
 
 
@@ -39,6 +40,8 @@ ndviBBm_20 = difBBm_20 / sumBBm_20
 
 
 plot(ndviBBm_20, col=mako(10))
+dev.off()
+
 
 #___________________________________________#
 #              2nd half 2020                #
@@ -60,7 +63,7 @@ sumBBi_20 = BBi_20[[4]] + BBi_20[[1]] # NIR + RED
 ndviBBi_20 = difBBi_20 / sumBBi_20
 
 plot(ndviBBi_20, col=mako(10))
-
+dev.off()
 
 
 #___________________________________________#
@@ -83,6 +86,8 @@ sumBBg_21 = BBg_21[[4]] + BBg_21[[1]] # NIR + RED
 ndviBBg_21 = difBBg_21 / sumBBg_21
 
 plot(ndviBBg_21, col=mako(10))
+dev.off()
+
 
 #___________________________________________#
 #              2nd half 2021                #
@@ -104,7 +109,7 @@ sumBBs_21 = BBs_21[[4]] + BBs_21[[1]] # NIR + RED
 ndviBBs_21 = difBBs_21 / sumBBs_21
 
 plot(ndviBBs_21, col=mako(10))
-
+dev.off()
 
 
 #___________________________________________#
@@ -126,6 +131,8 @@ sumBBma_22 = BBma_22[[4]] + BBma_22[[1]] # NIR + RED
 ndviBBma_22 = difBBma_22 / sumBBma_22
 
 plot(ndviBBma_22, col=mako(10))
+dev.off()
+
 
 #___________________________________________#
 #              2nd half 2022                #
@@ -146,7 +153,7 @@ sumBBn_22 = BBn_22[[4]] + BBn_22[[1]] # NIR + RED
 ndviBBn_22 = difBBn_22 / sumBBn_22
 
 plot(ndviBBn_22, col=mako(10))
-
+dev.off()
 
 
 #___________________________________________#
@@ -169,6 +176,8 @@ sumBBmg_23 = BBmg_23[[4]] + BBmg_23[[1]] # NIR + RED
 ndviBBmg_23 = difBBmg_23 / sumBBmg_23
 
 plot(ndviBBmg_23, col=mako(10))
+dev.off()
+
 
 #___________________________________________#
 #              2nd half 2023                #
@@ -190,7 +199,7 @@ sumBBst_23 = BBst_23[[4]] + BBst_23[[1]] # NIR + RED
 ndviBBst_23 = difBBst_23 / sumBBst_23
 
 plot(ndviBBst_23, col=mako(10))
-
+dev.off()
 
 
 #___________________________________________#
@@ -213,6 +222,8 @@ sumBBgn_24 = BBgn_24[[4]] + BBgn_24[[1]] # NIR + RED
 ndviBBgn_24 = difBBgn_24 / sumBBgn_24
 
 plot(ndviBBgn_24, col=mako(10))
+dev.off()
+
 
 #___________________________________________#
 #              2nd half 2024                #
@@ -234,7 +245,7 @@ sumBBse_24 = BBse_24[[4]] + BBse_24[[1]] # NIR + RED
 ndviBBse_24 = difBBse_24 / sumBBse_24
 
 plot(ndviBBse_24, col=mako(10))
-
+dev.off()
 
 
 #____________________________________________________________________________________#
@@ -265,6 +276,8 @@ ndviDOa_20 = difDOa_20 / sumDOa_20
 
 
 plot(ndviDOa_20, col=mako(10))
+dev.off()
+
 
 #___________________________________________#
 #              2nd half 2020                #
@@ -287,6 +300,7 @@ ndviDOp_20 = difDOp_20 / sumDOp_20
 
 
 plot(ndviDOp_20, col=mako(10))
+dev.off()
 
 
 #___________________________________________#
@@ -310,6 +324,8 @@ ndviDOa_21 = difDOa_21 / sumDOa_21
 
 
 plot(ndviDOa_21, col=mako(10))
+dev.off()
+
 
 #___________________________________________#
 #              2nd half 2021                #
@@ -332,7 +348,7 @@ ndviDOp_21 = difDOp_21 / sumDOp_21
 
 
 plot(ndviDOp_21, col=mako(10))
-
+dev.off()
 
 
 #___________________________________________#
@@ -356,6 +372,8 @@ ndviDOa_22 = difDOa_22 / sumDOa_22
 
 
 plot(ndviDOa_22, col=mako(10))
+dev.off()
+
 
 #___________________________________________#
 #              2nd half 2022                #
@@ -378,7 +396,7 @@ ndviDOp_22 = difDOp_22 / sumDOp_22
 
 
 plot(ndviDOp_22, col=mako(10))
-
+dev.off()
 
 
 #___________________________________________#
@@ -402,6 +420,8 @@ ndviDOa_23 = difDOa_23 / sumDOa_23
 
 
 plot(ndviDOa_23, col=mako(10))
+dev.off()
+
 
 #___________________________________________#
 #              2nd half 2023                #
@@ -424,7 +444,7 @@ ndviDOp_23 = difDOp_23 / sumDOp_23
 
 
 plot(ndviDOp_23, col=mako(10))
-
+dev.off()
 
 
 #___________________________________________#
@@ -448,6 +468,8 @@ ndviDOa_24 = difDOa_24 / sumDOa_24
 
 
 plot(ndviDOa_24, col=mako(10))
+dev.off()
+
 
 #___________________________________________#
 #              2nd half 2024                #
@@ -470,7 +492,7 @@ ndviDOp_24 = difDOp_24 / sumDOp_24
 
 
 plot(ndviDOp_24, col=mako(10))
-
+dev.off()
 
 
 #____________________________________________________________________________________#
@@ -490,6 +512,8 @@ FCm4_20 <- rast("FCm8_20.tiff")
 FCm_20 <- c(FCm1_20, FCm2_20, FCm3_20, FCm4_20)
 
 im.plotRGB(FCm_20, 1,2,3)
+dev.off()
+
 
 #___________________________________________#
 #              2nd half 2020                #
@@ -506,6 +530,8 @@ ndviFCm_20 = difFCm_20 / sumFCm_20
 
 
 plot(ndviFCm_20, col=mako(10))
+dev.off()
+
 
 #___________________________________________#
 #              2nd half 2020                #
@@ -528,6 +554,7 @@ ndviFCs_20 = difFCs_20 / sumFCs_20
 
 
 plot(ndviFCs_20, col=mako(10))
+dev.off()
 
 
 #___________________________________________#
@@ -551,6 +578,7 @@ ndviFCm_21 = difFCm_21 / sumFCm_21
 
 
 plot(ndviFCm_21, col=mako(10))
+dev.off()
 
 
 #___________________________________________#
@@ -574,7 +602,7 @@ ndviFCag_21 = difFCag_21 / sumFCag_21
 
 
 plot(ndviFCag_21, col=mako(10))
-
+dev.off()
 
 
 #___________________________________________#
@@ -598,6 +626,7 @@ ndviFCm_22 = difFCm_22 / sumFCm_22
 
 
 plot(ndviFCm_22, col=mako(10))
+dev.off()
 
 
 #___________________________________________#
@@ -621,8 +650,7 @@ ndviFCag_22 = difFCag_22 / sumFCag_22
 
 
 plot(ndviFCag_22, col=mako(10))
-
-
+dev.off()
 
 
 #___________________________________________#
@@ -646,6 +674,8 @@ ndviFCg_23 = difFCg_23 / sumFCg_23
 
 
 plot(ndviFCg_23, col=mako(10))
+dev.off()
+
 
 #___________________________________________#
 #              2nd half 2023                #
@@ -668,7 +698,7 @@ ndviFCn_23 = difFCn_23 / sumFCn_23
 
 
 plot(ndviFCn_23, col=mako(10))
-
+dev.off()
 
 
 #___________________________________________#
@@ -692,6 +722,7 @@ ndviFCa_24 = difFCa_24 / sumFCa_24
 
 
 plot(ndviFCa_24, col=mako(10))
+dev.off()
 
 
 #___________________________________________#
@@ -714,9 +745,15 @@ sumFCl_24 = FCl_24[[4]] + FCl_24[[1]] # NIR + RED
 ndviFCl_24 = difFCl_24 / sumFCl_24
 
 plot(ndviFCl_24, col=mako(10))
+dev.off()
 
-# code avg_****0 is for NDVI average for 2020 in spring
-# code avg_****1 is for NDVI average for 2020 in winter
+
+
+########################################################
+# code avg_****0 is for NDVI average for 2020 in spring#
+# code avg_****1 is for NDVI average for 2020 in winter#
+########################################################
+
 
 avg_BB200 <- global(ndviBBm_20, mean)
 avg_BB200
@@ -821,15 +858,11 @@ FCplot <- ggplot(dfNDVI_FC, aes(year, FC_NDVI_mean)) +
 
 mean_ndvi <- c(0.01274161, 0.2551434, 0.5121746, -0.1811906, 0.2829577, 0.7937196, -0.1023823, 0.188652, 0.4858986, -0.07179545, 0.278645, 0.745976, -0.05463326, 0.1777016, 0.4906755, -0.1037951, 0.2856543, 0.7447464, 0.147327, 0.1981832, 0.789346, -0.10674, 0.2172919, 0.6931907, -0.221131, 0.2067973, 0.6415878, 0.04985083, 0.3331254, 0.8107496)
 
-BDF_ndvi <- data.frame(
-  year = rep(2020:2024, each = 6),
-  site = rep(rep(c("Bourgneuf Bay",
-                   "Donana",
-                   "Foreste Casentinesi")), times = 5),
-  mean_ndvi = mean_ndvi
-)
 
-# BDF_ndvi <- data.frame( year = rep(2020:2024, each = 6), site = rep(c("Bourgneuf Bay", "Donana", "Foreste Casentinesi"), times = 5), replica = rep(c("1st_Half", "2nd_Half"), each = 3), mean_ndvi = mean_ndvi)
+BDF_ndvi <- data.frame( year = rep(2020:2024, each = 6), 
+                       site = rep(c("Bourgneuf Bay", "Donana", "Foreste Casentinesi"), times = 5), 
+                       replica = rep(c("1st_Half", "2nd_Half"), each = 3), 
+                       mean_ndvi = mean_ndvi)
 
 
 BDFplot <- ggplot(BDF_ndvi, aes(x = year, y = mean_ndvi, colour = site, linetype = replica, group = interaction(site, replica))) + 
@@ -844,7 +877,7 @@ BDFplot
 ######################
 ######################
 
-
+setwd("C:/Tesi/ImmaginiRec")
 
 BB_01_20 <- rast("01_BBm_20.tiff")
 BB_02_20 <- rast("02_BBi_20.tiff")
@@ -946,6 +979,23 @@ BB6_rec <- recolorize(BB6, method= "kmeans", n = 5)
 BB7_rec <- recolorize(BB7, method= "kmeans", n = 5)
 BB8_rec <- recolorize(BB8, method= "kmeans", n = 5)
 BB9_rec <- recolorize(BB9, method= "kmeans", n = 5)
+
+setwd("C:/Users/Antonio/Desktop/Immagini Tesi")
+
+BB_list_rec <- list(BB0_rec, BB1_rec, BB2_rec, BB3_rec, BB4_rec,
+                    BB5_rec, BB6_rec, BB7_rec, BB8_rec, BB9_rec)
+
+for(i in seq_along(BB_list_rec)){
+
+  png(paste0("BB", i-1, "_recolorize.png"),
+      width = 2000,
+      height = 2000,
+      res = 300)
+
+  plot(BB_list_rec[[i]])
+
+  dev.off()
+}
 
 # calculation of a matrix based on the assignment of each pixel to the color cluster to which it belongs
 BB0_pa <- BB0_rec$pixel_assignments
@@ -1091,6 +1141,21 @@ plot(BB8_rast, col = viridis (100))
 values(BB9_rast) <- as.vector(t(BB9_pa))
 plot(BB9_rast, col = viridis (100))
 
+BB_list_rast <- list(BB0_rast, BB1_rast, BB2_rast, BB3_rast, BB4_rast,
+                    BB5_rast, BB6_rast, BB7_rast, BB8_rast, BB9_rast)
+
+for(i in seq_along(BB_list_rast)){
+
+  png(paste0("BB", i-1, "_raster.png"),
+      width = 2000,
+      height = 2000,
+      res = 300)
+
+  plot(BB_list_rast[[i]])
+
+  dev.off()
+}
+
 # stack of clusters and ndvi images
 staBB0 <- c(BB0_rast, ndviBBm_20)
 staBB1 <- c(BB1_rast, ndviBBi_20)
@@ -1107,72 +1172,103 @@ staBB9 <- c(BB9_rast, ndviBBse_24)
 names(staBB0) <- c("cluster", "ndvi") # rename classes in cluster and ndvi
 extract_dfBB0 <- as.data.frame(staBB0, na.rm = TRUE) # na.rm remove NA values
 aggregate(ndvi ~ cluster, data = extract_dfBB0, median) # It is a function that allows me to group pixels by color cluster, calculate the median of the NDVI values in each group, and return a summary dataframe.boxplot(ndvi ~ cluster, data = extract_dfBB0) # mi mostra i bocplot per ogni cluster
+png("BB0_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfBB0)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB0) # Kruskal-Wallis test
-# Kruskal-Wallis chi-squared = 920021, df = 4, p-value < 2.2e-16
+# Kruskal-Wallis chi-squared = 733050, df = 4, p-value < 2.2e-16
 
 names(staBB1) <- c("cluster", "ndvi")
 extract_dfBB1 <- as.data.frame(staBB1, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfBB1, median)
+png("BB1_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfBB1)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB1)
-# Kruskal-Wallis chi-squared = 810823, df = 4, p-value < 2.2e-16
+# Kruskal-Wallis chi-squared = 810847, df = 4, p-value < 2.2e-16
 
 names(staBB2) <- c("cluster", "ndvi")
 extract_dfBB2 <- as.data.frame(staBB2, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfBB2, median)
+png("BB2_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfBB2)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB2)
 # Kruskal-Wallis chi-squared = 1036569, df = 4, p-value < 2.2e-16
 
 names(staBB3) <- c("cluster", "ndvi")
 extract_dfBB3 <- as.data.frame(staBB3, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfBB3, median)
+png("BB3_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfBB3)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB3)
-# Kruskal-Wallis chi-squared = 812305, df = 4, p-value < 2.2e-16
+# Kruskal-Wallis chi-squared = 871653, df = 4, p-value < 2.2e-16
 
 names(staBB4) <- c("cluster", "ndvi")
 extract_dfBB4 <- as.data.frame(staBB4, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfBB4, median)
+png("BB4_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfBB4)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB4)
-# Kruskal-Wallis chi-squared = 921457, df = 4, p-value < 2.2e-16
+# Kruskal-Wallis chi-squared = 1036157, df = 4, p-value < 2.2e-16
 
 names(staBB5) <- c("cluster", "ndvi")
 extract_dfBB5 <- as.data.frame(staBB5, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfBB5, median)
+png("BB5_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfBB5)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB5)
-# Kruskal-Wallis chi-squared = 862763, df = 4, p-value < 2.2e-16
+# Kruskal-Wallis chi-squared = 957698, df = 4, p-value < 2.2e-16
 
 names(staBB6) <- c("cluster", "ndvi")
 extract_dfBB6 <- as.data.frame(staBB6, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfBB6, median)
+png("BB6_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfBB6)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB6)
-# Kruskal-Wallis chi-squared = 777440, df = 4, p-value < 2.2e-16
+# Kruskal-Wallis chi-squared = 980634, df = 4, p-value < 2.2e-16
 
 names(staBB7) <- c("cluster", "ndvi")
 extract_dfBB7 <- as.data.frame(staBB7, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfBB7, median)
+png("BB7_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfBB7)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB7)
-# Kruskal-Wallis chi-squared = 682361, df = 4, p-value < 2.2e-16
+# Kruskal-Wallis chi-squared = 925488, df = 4, p-value < 2.2e-16
 
 names(staBB8) <- c("cluster", "ndvi")
 extract_dfBB8 <- as.data.frame(staBB8, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfBB8, median)
+png("BB8_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfBB8)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB8)
-# Kruskal-Wallis chi-squared = 1046245, df = 4, p-value < 2.2e-16
+# Kruskal-Wallis chi-squared = 998301, df = 4, p-value < 2.2e-16
 
 names(staBB9) <- c("cluster", "ndvi")
 extract_dfBB9 <- as.data.frame(staBB9, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfBB9, median)
+png("BB9_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfBB9)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfBB9)
-# Kruskal-Wallis chi-squared = 591318, df = 4, p-value < 2.2e-16
+# Kruskal-Wallis chi-squared = 703683, df = 4, p-value < 2.2e-16
+
+dunn_BB0 <- dunn.test(extract_dfBB0$ndvi, extract_dfBB0$cluster, method = "bh")
+dunn_BB1 <- dunn.test(extract_dfBB1$ndvi, extract_dfBB1$cluster, method = "bh")
+dunn_BB2 <- dunn.test(extract_dfBB2$ndvi, extract_dfBB2$cluster, method = "bh")
+dunn_BB3 <- dunn.test(extract_dfBB3$ndvi, extract_dfBB3$cluster, method = "bh")
+dunn_BB4 <- dunn.test(extract_dfBB4$ndvi, extract_dfBB4$cluster, method = "bh")
+dunn_BB5 <- dunn.test(extract_dfBB5$ndvi, extract_dfBB5$cluster, method = "bh")
+dunn_BB6 <- dunn.test(extract_dfBB6$ndvi, extract_dfBB6$cluster, method = "bh")
+dunn_BB7 <- dunn.test(extract_dfBB7$ndvi, extract_dfBB7$cluster, method = "bh")
+dunn_BB8 <- dunn.test(extract_dfBB8$ndvi, extract_dfBB8$cluster, method = "bh")
+dunn_BB9 <- dunn.test(extract_dfBB9$ndvi, extract_dfBB9$cluster, method = "bh")
 
 
 ########################################
@@ -1204,6 +1300,20 @@ DO7_rec <- recolorize(DO7, method= "kmeans", n = 5)
 DO8_rec <- recolorize(DO8, method= "kmeans", n = 5)
 DO9_rec <- recolorize(DO9, method= "kmeans", n = 5)
 
+DO_list_rec <- list(DO0_rec, DO1_rec, DO2_rec, DO3_rec, DO4_rec,
+                    DO5_rec, DO6_rec, DO7_rec, DO8_rec, DO9_rec)
+
+for(i in seq_along(DO_list_rec)){
+
+  png(paste0("DO", i-1, "_recolorize.png"),
+      width = 2000,
+      height = 2000,
+      res = 300)
+
+  plot(DO_list_rec[[i]])
+
+  dev.off()
+}
 
 DO0_pa <- DO0_rec$pixel_assignments
 DO1_pa <- DO1_rec$pixel_assignments
@@ -1349,6 +1459,21 @@ values(DO9_rast) <- as.vector(t(DO9_pa))
 plot(DO9_rast, col = viridis (100))
 
 
+DO_list_rast <- list(DO0_rast, DO1_rast, DO2_rast, DO3_rast, DO4_rast,
+                    DO5_rast, DO6_rast, DO7_rast, DO8_rast, DO9_rast)
+
+for(i in seq_along(DO_list_rast)){
+
+  png(paste0("DO", i-1, "_raster.png"),
+      width = 2000,
+      height = 2000,
+      res = 300)
+
+  plot(DO_list_rast[[i]])
+
+  dev.off()
+}
+
 staDO0 <- c(DO0_rast, ndviDOa_20)
 staDO1 <- c(DO1_rast, ndviDOp_20)
 staDO2 <- c(DO2_rast, ndviDOa_21)
@@ -1364,70 +1489,90 @@ staDO9 <- c(DO9_rast, ndviDOp_24)
 names(staDO0) <- c("cluster", "ndvi")
 extract_dfDO0 <- as.data.frame(staDO0, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfDO0, median)
+png("DO0_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfDO0)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO0)
-# Kruskal-Wallis chi-squared = 744100, df = 4, p-value < 2.2e-16
+# Kruskal-Wallis chi-squared = 745207, df = 4, p-value < 2.2e-16
 
 names(staDO1) <- c("cluster", "ndvi")
 extract_dfDO1 <- as.data.frame(staDO1, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfDO1, median)
+png("DO1_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfDO1)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO1)
 # Kruskal-Wallis chi-squared = 285573, df = 4, p-value < 2.2e-16
 
 names(staDO2) <- c("cluster", "ndvi")
 extract_dfDO2 <- as.data.frame(staDO2, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfDO2, median)
+png("DO2_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfDO2)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO2)
 # Kruskal-Wallis chi-squared = 652904, df = 4, p-value < 2.2e-16
 
 names(staDO3) <- c("cluster", "ndvi")
 extract_dfDO3 <- as.data.frame(staDO3, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfDO3, median)
+png("DO3_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfDO3)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO3)
 # Kruskal-Wallis chi-squared = 337481, df = 4, p-value < 2.2e-16
 
 names(staDO4) <- c("cluster", "ndvi")
 extract_dfDO4 <- as.data.frame(staDO4, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfDO4, median)
+png("DO4_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfDO4)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO4)
 # Kruskal-Wallis chi-squared = 614636, df = 4, p-value < 2.2e-16
 
 names(staDO5) <- c("cluster", "ndvi")
 extract_dfDO5 <- as.data.frame(staDO5, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfDO5, median)
+png("DO5_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfDO5)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO5)
-# Kruskal-Wallis chi-squared = 600265, df = 4, p-value < 2.2e-16
+# Kruskal-Wallis chi-squared = 590444, df = 4, p-value < 2.2e-16
 
 names(staDO6) <- c("cluster", "ndvi")
 extract_dfDO6 <- as.data.frame(staDO6, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfDO6, median)
+png("DO6_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfDO6)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO6)
-# Kruskal-Wallis chi-squared = 653044, df = 4, p-value < 2.2e-16
+# Kruskal-Wallis chi-squared = 265399, df = 4, p-value < 2.2e-16
 
 names(staDO7) <- c("cluster", "ndvi")
 extract_dfDO7 <- as.data.frame(staDO7, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfDO7, median)
+png("DO7_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfDO7)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO7)
 # Kruskal-Wallis chi-squared = 299580, df = 4, p-value < 2.2e-16
 
 names(staDO8) <- c("cluster", "ndvi")
 extract_dfDO8 <- as.data.frame(staDO8, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfDO8, median)
+png("DO8_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfDO8)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO8)
 # Kruskal-Wallis chi-squared = 671521, df = 4, p-value < 2.2e-16
 
 names(staDO9) <- c("cluster", "ndvi")
 extract_dfDO9 <- as.data.frame(staDO9, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfDO9, median)
+png("DO9_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfDO9)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfDO9)
 # Kruskal-Wallis chi-squared = 514925, df = 4, p-value < 2.2e-16
 
@@ -1460,6 +1605,21 @@ FC6_rec <- recolorize(FC6, method= "kmeans", n = 5)
 FC7_rec <- recolorize(FC7, method= "kmeans", n = 5)
 FC8_rec <- recolorize(FC8, method= "kmeans", n = 5)
 FC9_rec <- recolorize(FC9, method= "kmeans", n = 5)
+
+FC_list_rec <- list(FC0_rec, FC1_rec, FC2_rec, FC3_rec, FC4_rec,
+                    FC5_rec, FC6_rec, FC7_rec, FC8_rec, FC9_rec)
+
+for(i in seq_along(FC_list_rec)){
+
+  png(paste0("FC", i-1, "_recolorize.png"),
+      width = 2000,
+      height = 2000,
+      res = 300)
+
+  plot(FC_list_rec[[i]])
+
+  dev.off()
+}
 
 
 FC0_pa <- FC0_rec$pixel_assignments
@@ -1605,6 +1765,21 @@ plot(FC8_rast, col = viridis (100))
 values(FC9_rast) <- as.vector(t(FC9_pa))
 plot(FC9_rast, col = viridis (100))
 
+FC_list_rast <- list(FC0_rast, FC1_rast, FC2_rast, FC3_rast, FC4_rast,
+                    FC5_rast, FC6_rast, FC7_rast, FC8_rast, FC9_rast)
+
+for(i in seq_along(FC_list_rast)){
+
+  png(paste0("FC", i-1, "_raster.png"),
+      width = 2000,
+      height = 2000,
+      res = 300)
+
+  plot(FC_list_rast[[i]])
+
+  dev.off()
+}
+
 # stack dei cluster e NDVI
 staFC0 <- c(FC0_rast, ndviFCm_20)
 staFC1 <- c(FC1_rast, ndviFCs_20)
@@ -1621,70 +1796,90 @@ staFC9 <- c(FC9_rast, ndviFCl_24)
 names(staFC0) <- c("cluster", "ndvi")
 extract_dfFC0 <- as.data.frame(staFC0, na.rm = TRUE) 
 aggregate(ndvi ~ cluster, data = extract_dfFC0, median) 
+png("FC0_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfFC0)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC0)
 # Kruskal-Wallis chi-squared = 449361, df = 4, p-value < 2.2e-16
 
 names(staFC1) <- c("cluster", "ndvi")
 extract_dfFC1 <- as.data.frame(staFC1, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfFC1, median)
+png("FC1_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfFC1)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC1)
 # Kruskal-Wallis chi-squared = 789942, df = 4, p-value < 2.2e-16
 
 names(staFC2) <- c("cluster", "ndvi")
 extract_dfFC2 <- as.data.frame(staFC2, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfFC2, median)
+png("FC2_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfFC2)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC2)
 # Kruskal-Wallis chi-squared = 483105, df = 4, p-value < 2.2e-16
 
 names(staFC3) <- c("cluster", "ndvi")
 extract_dfFC3 <- as.data.frame(staFC3, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfFC3, median)
+png("FC3_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfFC3)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC3)
 # Kruskal-Wallis chi-squared = 799859, df = 4, p-value < 2.2e-16
 
 names(staFC4) <- c("cluster", "ndvi")
 extract_dfFC4 <- as.data.frame(staFC4, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfFC4, median)
+png("FC4_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfFC4)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC4)
 # Kruskal-Wallis chi-squared = 507031, df = 4, p-value < 2.2e-16
 
 names(staFC5) <- c("cluster", "ndvi")
 extract_dfFC5 <- as.data.frame(staFC5, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfFC5, median)
+png("FC5_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfFC5)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC5)
 # Kruskal-Wallis chi-squared = 854294, df = 4, p-value < 2.2e-16
 
 names(staFC6) <- c("cluster", "ndvi")
 extract_dfFC6 <- as.data.frame(staFC6, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfFC6, median)
+png("FC6_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfFC6)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC6)
 # Kruskal-Wallis chi-squared = 643593, df = 4, p-value < 2.2e-16
 
 names(staFC7) <- c("cluster", "ndvi")
 extract_dfFC7 <- as.data.frame(staFC7, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfFC7, median)
+png("FC7_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfFC7)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC7)
 # Kruskal-Wallis chi-squared = 701470, df = 4, p-value < 2.2e-16
 
 names(staFC8) <- c("cluster", "ndvi")
 extract_dfFC8 <- as.data.frame(staFC8, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfFC8, median)
+png("FC8_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfFC8)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC8)
 # Kruskal-Wallis chi-squared = 15594, df = 4, p-value < 2.2e-16
 
 names(staFC9) <- c("cluster", "ndvi")
 extract_dfFC9 <- as.data.frame(staFC9, na.rm = TRUE)
 aggregate(ndvi ~ cluster, data = extract_dfFC9, median)
+png("FC9_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfFC9)
+dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC9)
 # Kruskal-Wallis chi-squared = 120086, df = 4, p-value < 2.2e-16
 
