@@ -949,3 +949,13 @@ for (i in 1:length(lay_FC9))
           {
               png::writePNG(lay_FC9[[i]], target = paste0("FC9_layer_", i, ".png"))
           }
+
+
+
+BDF_ndvi <- data.frame(
+  year = rep(2020:2024, each = 6),
+  site = rep(rep(c("Bourgneuf Bay",
+                   "Donana",
+                   "Foreste Casentinesi")), times = 5),
+  mean_ndvi = mean_ndvi
+)
