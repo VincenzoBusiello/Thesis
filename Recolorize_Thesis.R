@@ -1800,7 +1800,7 @@ png("FC0_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfFC0)
 dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC0)
-# Kruskal-Wallis chi-squared = 449361, df = 4, p-value < 2.2e-16
+# Kruskal-Wallis chi-squared = 437325, df = 4, p-value < 2.2e-16
 
 names(staFC1) <- c("cluster", "ndvi")
 extract_dfFC1 <- as.data.frame(staFC1, na.rm = TRUE)
@@ -1809,7 +1809,7 @@ png("FC1_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfFC1)
 dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC1)
-# Kruskal-Wallis chi-squared = 789942, df = 4, p-value < 2.2e-16
+# Kruskal-Wallis chi-squared = 789557, df = 4, p-value < 2.2e-16
 
 names(staFC2) <- c("cluster", "ndvi")
 extract_dfFC2 <- as.data.frame(staFC2, na.rm = TRUE)
@@ -1818,7 +1818,7 @@ png("FC2_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfFC2)
 dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC2)
-# Kruskal-Wallis chi-squared = 483105, df = 4, p-value < 2.2e-16
+# Kruskal-Wallis chi-squared = 483093, df = 4, p-value < 2.2e-16
 
 names(staFC3) <- c("cluster", "ndvi")
 extract_dfFC3 <- as.data.frame(staFC3, na.rm = TRUE)
@@ -1836,7 +1836,7 @@ png("FC4_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfFC4)
 dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC4)
-# Kruskal-Wallis chi-squared = 507031, df = 4, p-value < 2.2e-16
+# Kruskal-Wallis chi-squared = 507008, df = 4, p-value < 2.2e-16
 
 names(staFC5) <- c("cluster", "ndvi")
 extract_dfFC5 <- as.data.frame(staFC5, na.rm = TRUE)
@@ -1845,7 +1845,7 @@ png("FC5_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfFC5)
 dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC5)
-# Kruskal-Wallis chi-squared = 854294, df = 4, p-value < 2.2e-16
+# Kruskal-Wallis chi-squared = 854293, df = 4, p-value < 2.2e-16
 
 names(staFC6) <- c("cluster", "ndvi")
 extract_dfFC6 <- as.data.frame(staFC6, na.rm = TRUE)
@@ -1854,7 +1854,7 @@ png("FC6_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfFC6)
 dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC6)
-# Kruskal-Wallis chi-squared = 643593, df = 4, p-value < 2.2e-16
+# Kruskal-Wallis chi-squared = 643605, df = 4, p-value < 2.2e-16
 
 names(staFC7) <- c("cluster", "ndvi")
 extract_dfFC7 <- as.data.frame(staFC7, na.rm = TRUE)
@@ -1863,7 +1863,7 @@ png("FC7_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfFC7)
 dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC7)
-# Kruskal-Wallis chi-squared = 701470, df = 4, p-value < 2.2e-16
+# Kruskal-Wallis chi-squared = 701462, df = 4, p-value < 2.2e-16
 
 names(staFC8) <- c("cluster", "ndvi")
 extract_dfFC8 <- as.data.frame(staFC8, na.rm = TRUE)
@@ -1872,7 +1872,7 @@ png("FC8_boxplot.png", width = 2000, height = 2000, res = 300)
 boxplot(ndvi ~ cluster, data = extract_dfFC8)
 dev.off()
 kruskal.test(ndvi ~ as.factor(cluster), data = extract_dfFC8)
-# Kruskal-Wallis chi-squared = 15594, df = 4, p-value < 2.2e-16
+# Kruskal-Wallis chi-squared = 15598, df = 4, p-value < 2.2e-16
 
 names(staFC9) <- c("cluster", "ndvi")
 extract_dfFC9 <- as.data.frame(staFC9, na.rm = TRUE)
